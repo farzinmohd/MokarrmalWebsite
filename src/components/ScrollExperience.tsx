@@ -111,6 +111,9 @@ export default function ScrollExperience() {
       )}
       <canvas ref={canvasRef} className="block w-full h-full object-cover" />
       
+      {/* Bottom fade gradient to blend into the next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-20" />
+      
       {/* Overlay Content */}
       <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center z-10">
         

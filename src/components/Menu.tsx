@@ -1,216 +1,513 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
-// Define categories with their image fallbacks
+// ─── Category metadata ────────────────────────────────────────────────────────
 const categoriesData = [
-  { id: "burgers", image: "/images/menu/burg.jpeg" },
-  { id: "shawarma", image: null }, // Falls back to gold glow
-  { id: "pizza", image: "/images/menu/pizz.jpeg" },
-  { id: "rice", image: "/images/menu/rice.jpeg" },
-  { id: "beverages", image: null },
-  { id: "sides", image: null }
+  {
+    id: "burgers",
+    image: "/images/menu/burg.jpeg",
+    accent: "#C8A96E",
+    label: "Signature Burgers",
+    tagline: "Crafted with prime Angus & Wagyu beef",
+  },
+  {
+    id: "pizza",
+    image: "/images/menu/pizz.jpeg",
+    accent: "#C8A96E",
+    label: "Artisan Pizzas",
+    tagline: "Stone-baked in our wood-fired oven",
+  },
+  {
+    id: "rice",
+    image: "/images/menu/rice.jpeg",
+    accent: "#C8A96E",
+    label: "Heritage Rice",
+    tagline: "Traditional Arabian recipes, perfected",
+  },
 ];
 
-// Define items mapping
-const categoryItems: Record<string, string[]> = {
-  burgers: ["Classic Burger", "Double Cheese Burger", "Chicken Burger", "Spicy Burger", "Mokarrmal Special Burger"],
-  shawarma: ["Chicken Shawarma", "Beef Shawarma", "Mixed Shawarma", "Family Shawarma Platter"],
-  pizza: ["Margherita Pizza", "Chicken Pizza", "Pepperoni Pizza", "BBQ Pizza", "Mokarrmal Signature Pizza"],
-  rice: ["Chicken Kabsa", "Mandi", "Biryani", "Mixed Rice Platter"],
-  beverages: ["Mint Lemonade", "Saudi Champagne", "Fresh Orange Juice", "Soft Drinks"],
-  sides: ["Truffle Fries", "Crispy Onion Rings", "Mozzarella Sticks", "Mokarrmal Salad"]
+// ─── Per-item image map ────────────────────────────────────────────────────────
+const itemImages: Record<string, string> = {
+  "Classic Burger":           "/images/menu/classic_burger.png",
+  "Double Cheese Burger":     "/images/menu/double_cheese_burger.png",
+  "Chicken Burger":           "/images/menu/chicken_burger.png",
+  "Spicy Burger":             "/images/menu/spicy_burger.png",
+  "Mokarrmal Special Burger": "/images/menu/special_burger.png",
+  "Margherita Pizza":         "/images/menu/margherita_pizza.png",
+  "Chicken Pizza":            "/images/menu/chicken_pizza.png",
+  "Pepperoni Pizza":          "/images/menu/pepperoni_pizza.png",
+  "BBQ Pizza":                "/images/menu/bbq_pizza.png",
+  "Mokarrmal Signature Pizza":"/images/menu/signature_pizza.png",
+  "Chicken Kabsa":            "/images/menu/chicken_kabsa.png",
+  "Mandi":                    "/images/menu/mandi.png",
+  "Biryani":                  "/images/menu/biryani.png",
+  "Mixed Rice Platter":       "/images/menu/mixed_rice.png",
 };
 
-// Reusable 3D Menu Card for individual items
-function MenuCard({ itemKey, fallbackImage }: { itemKey: string; fallbackImage: string | null }) {
+// ─── Items per category ────────────────────────────────────────────────────────
+const categoryItems: Record<string, string[]> = {
+  burgers: [
+    "Classic Burger",
+    "Double Cheese Burger",
+    "Chicken Burger",
+    "Spicy Burger",
+    "Mokarrmal Special Burger",
+  ],
+  pizza: [
+    "Margherita Pizza",
+    "Chicken Pizza",
+    "Pepperoni Pizza",
+    "BBQ Pizza",
+    "Mokarrmal Signature Pizza",
+  ],
+  rice: ["Chicken Kabsa", "Mandi", "Biryani", "Mixed Rice Platter"],
+};
+
+// ─── Premium Menu Card ────────────────────────────────────────────────────────
+function MenuCard({
+  itemKey,
+  accent,
+  index,
+}: {
+  itemKey: string;
+  accent: string;
+  index: number;
+}) {
   const { t } = useLanguage();
   const item = t.items[itemKey];
-  
+  const image = itemImages[itemKey] ?? null;
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+  const mx = useSpring(x, { stiffness: 300, damping: 30 });
+  const my = useSpring(y, { stiffness: 300, damping: 30 });
+  const rotateX = useTransform(my, [-0.5, 0.5], ["6deg", "-6deg"]);
+  const rotateY = useTransform(mx, [-0.5, 0.5], ["-6deg", "6deg"]);
 
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+  const [hovered, setHovered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
+    const r = e.currentTarget.getBoundingClientRect();
+    x.set((e.clientX - r.left) / r.width - 0.5);
+    y.set((e.clientY - r.top) / r.height - 0.5);
   };
-
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
+    setHovered(false);
   };
 
   if (!item) return null;
 
   return (
     <motion.div
+      layout
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ rotateY, rotateX, transformStyle: "preserve-3d" }}
-      className="relative w-full aspect-[4/5] rounded-2xl cursor-pointer group"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.4 }}
+      onMouseEnter={() => setHovered(true)}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9, y: 20 }}
+      transition={{ duration: 0.4, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className="relative cursor-pointer group"
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+        perspective: "800px",
+      }}
     >
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-neutral-800 to-black border border-neutral-700/50 shadow-2xl overflow-hidden group-hover:border-gold/30 transition-colors duration-500">
-        
-        {/* Image Section - Top 60% */}
-        <div className="absolute inset-x-0 top-0 h-[60%] overflow-hidden bg-neutral-900">
-           {fallbackImage ? (
-             <img src={fallbackImage} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100" />
-           ) : (
-             <div className="w-full h-full flex items-center justify-center">
-                <div className="w-32 h-32 rounded-full bg-gold/10 blur-2xl" />
-             </div>
-           )}
-           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black to-transparent" />
+      {/* Card shell */}
+      <div
+        className="relative rounded-[20px] overflow-hidden transition-shadow duration-500"
+        style={{
+          background: "linear-gradient(145deg, #141414 0%, #0a0a0a 100%)",
+          border: `1px solid ${hovered ? accent + "50" : "#232323"}`,
+          boxShadow: hovered
+            ? `0 20px 60px ${accent}25, 0 0 0 1px ${accent}20`
+            : "0 4px 24px rgba(0,0,0,0.6)",
+          transition: "border 0.4s, box-shadow 0.4s",
+        }}
+      >
+        {/* ── Food image area ── */}
+        <div className="relative w-full overflow-hidden" style={{ height: "220px" }}>
+          {image ? (
+            <img
+              src={image}
+              alt={item.name}
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              style={{ filter: hovered ? "brightness(0.95)" : "brightness(0.78)" }}
+            />
+          ) : (
+            <div
+              className="w-full h-full flex items-center justify-center"
+              style={{ background: `${accent}10` }}
+            >
+              <div
+                className="w-24 h-24 rounded-full blur-3xl"
+                style={{ background: `${accent}40` }}
+              />
+            </div>
+          )}
+
+          {/* Gradient fade at bottom of image */}
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+
+          {/* Price badge – top right */}
+          <div
+            className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-black tracking-wide"
+            style={{
+              background: `${accent}22`,
+              color: accent,
+              border: `1px solid ${accent}44`,
+              backdropFilter: "blur(8px)",
+            }}
+          >
+            {item.price}
+          </div>
+
+          {/* Shimmer line on hover */}
+          <motion.div
+            className="absolute top-0 left-0 right-0 h-[1px]"
+            style={{
+              background: `linear-gradient(90deg, transparent, ${accent}, transparent)`,
+              opacity: hovered ? 1 : 0,
+            }}
+            animate={hovered ? { scaleX: [0, 1] } : { scaleX: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          />
         </div>
 
-        {/* Text Section - Bottom 40% */}
-        <div className="absolute inset-x-0 bottom-0 h-[45%] p-6 flex flex-col justify-end bg-transparent z-10" style={{ transform: "translateZ(40px)" }}>
-          <h3 className="text-xl font-bold text-white mb-2 leading-tight">{item.name}</h3>
-          <p className="text-xs text-neutral-400 mb-4 line-clamp-2">{item.desc}</p>
-          <div className="flex justify-between items-center mt-auto">
-            <span className="text-lg font-medium text-white">{item.price}</span>
-            <button className="px-4 py-2 bg-neutral-800 border border-neutral-600 text-white rounded-full text-xs font-medium hover:bg-gold hover:text-black hover:border-gold transition-all duration-300">
+        {/* ── Text content ── */}
+        <div className="px-5 pt-4 pb-5 flex flex-col gap-2">
+          <h3
+            className="text-[15px] font-bold leading-tight tracking-tight"
+            style={{ color: hovered ? "#fff" : "#e5e5e5" }}
+          >
+            {item.name}
+          </h3>
+          <p className="text-[11px] leading-relaxed line-clamp-2" style={{ color: "#666" }}>
+            {item.desc}
+          </p>
+
+          {/* Bottom row */}
+          <div className="flex items-center justify-between mt-2">
+            {/* Dot indicator */}
+            <div className="flex items-center gap-1.5">
+              <div
+                className="w-1.5 h-1.5 rounded-full"
+                style={{ background: accent }}
+              />
+              <span className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: accent }}>
+                Available
+              </span>
+            </div>
+
+            {/* Order button */}
+            <button
+              className="flex items-center gap-1.5 text-[11px] font-bold rounded-full px-4 py-1.5 transition-all duration-300"
+              style={
+                hovered
+                  ? { background: accent, color: "#000" }
+                  : {
+                      background: "transparent",
+                      color: accent,
+                      border: `1px solid ${accent}44`,
+                    }
+              }
+            >
               {t.nav.orderNow}
+              <svg
+                className="w-3 h-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                />
+              </svg>
             </button>
           </div>
         </div>
 
+        {/* Left accent bar */}
+        <div
+          className="absolute left-0 top-4 bottom-4 w-[3px] rounded-r-full transition-opacity duration-400"
+          style={{ background: accent, opacity: hovered ? 1 : 0 }}
+        />
       </div>
     </motion.div>
   );
 }
 
+// ─── Category Hero Card (Premium, no emoji) ──────────────────────────────────
+function CategoryHeroCard({
+  cat,
+  index,
+  label,
+  onClick,
+}: {
+  cat: (typeof categoriesData)[0];
+  index: number;
+  label: string;
+  onClick: () => void;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <motion.div
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      initial={{ opacity: 0, scale: 0.85 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.65, delay: index * 0.14, ease: [0.22, 1, 0.36, 1] }}
+      className="relative overflow-hidden cursor-pointer"
+      style={{
+        aspectRatio: "1 / 1",
+        borderRadius: "50%",
+        border: hovered
+          ? "2px solid #C8A96E"
+          : "2px solid #2a2a2a",
+        boxShadow: hovered
+          ? "0 0 0 6px #C8A96E18, 0 24px 60px rgba(0,0,0,0.8)"
+          : "0 8px 32px rgba(0,0,0,0.5)",
+        transition: "border 0.45s, box-shadow 0.45s, transform 0.5s",
+        transform: hovered ? "translateY(-8px) scale(1.04)" : "translateY(0) scale(1)",
+      }}
+    >
+      {/* Photo */}
+      <img
+        src={cat.image}
+        alt={label}
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{
+          transform: hovered ? "scale(1.12)" : "scale(1.0)",
+          transition: "transform 1s cubic-bezier(0.22, 1, 0.36, 1)",
+          filter: hovered ? "brightness(0.5)" : "brightness(0.4)",
+        }}
+      />
+
+      {/* Radial dark overlay — darkest at edges for circular feel */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "radial-gradient(circle at 50% 50%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.75) 80%)",
+        }}
+      />
+
+      {/* Gold ring pulse on hover */}
+      <div
+        className="absolute inset-0 rounded-full"
+        style={{
+          boxShadow: hovered ? "inset 0 0 40px rgba(200,169,110,0.15)" : "none",
+          transition: "box-shadow 0.5s",
+        }}
+      />
+
+      {/* Centred content */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+        {/* Number */}
+        <span
+          className="block text-[10px] font-semibold tracking-[0.4em] uppercase mb-4"
+          style={{
+            color: "#C8A96E",
+            opacity: hovered ? 1 : 0.5,
+            transition: "opacity 0.4s",
+          }}
+        >
+          0{index + 1}
+        </span>
+
+        {/* Category name */}
+        <h3
+          className="text-2xl md:text-3xl font-black text-white leading-tight"
+          style={{ letterSpacing: "-0.02em" }}
+        >
+          {label}
+        </h3>
+
+        {/* Gold line */}
+        <div
+          className="mt-4 h-[1px] mx-auto"
+          style={{
+            background: "#C8A96E",
+            width: hovered ? "40px" : "20px",
+            opacity: 0.7,
+            transition: "width 0.5s ease",
+          }}
+        />
+
+        {/* Tagline — reveals on hover */}
+        <motion.p
+          animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 8 }}
+          transition={{ duration: 0.35 }}
+          className="mt-3 text-[10px] uppercase tracking-[0.22em] font-medium"
+          style={{ color: "#C8A96E99" }}
+        >
+          {cat.tagline}
+        </motion.p>
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── Main Menu Component ───────────────────────────────────────────────────────
 export default function Menu() {
   const { t, language } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
+  const activeCatData = categoriesData.find((c) => c.id === activeCategory);
+
   return (
-    <section id="menu" className="relative min-h-screen bg-black py-32 px-4 md:px-12 lg:px-24 overflow-hidden z-20">
-      <div className="max-w-7xl mx-auto min-h-[600px] flex flex-col">
-        
-        {/* Header Section */}
-        <motion.div 
-          layout="position"
-          className="text-center mb-16"
-        >
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">{t.menuSection.title}</h2>
-          <p className="text-xl text-neutral-400 max-w-2xl mx-auto font-light">
+    <section
+      id="menu"
+      className="relative min-h-screen bg-black py-28 px-4 md:px-12 lg:px-24 overflow-hidden z-20 -mt-[2px]"
+    >
+      {/* Ambient background glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full opacity-[0.05] blur-[100px] bg-white" />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative">
+        {/* ── Section Header ── */}
+        <motion.div layout="position" className="text-center mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-block text-[10px] font-semibold uppercase tracking-[0.35em] mb-4"
+            style={{ color: "#C8A96E" }}
+          >
+            What we serve
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="text-5xl md:text-7xl font-black text-white mb-5 tracking-tight"
+          >
+            {t.menuSection.title}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-base text-neutral-500 max-w-lg mx-auto font-light leading-relaxed"
+          >
             {t.menuSection.subtitle}
-          </p>
+          </motion.p>
         </motion.div>
 
-        {/* View 1: Category Selection Grid */}
+        {/* ── Views ── */}
         <AnimatePresence mode="wait">
+          {/* VIEW 1 — Hero category cards */}
           {!activeCategory && (
-            <motion.div 
-              key="category-grid"
+            <motion.div
+              key="hero-grid"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.5 }}
-              className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 flex-1 place-content-center"
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.35 }}
+              className="grid grid-cols-1 sm:grid-cols-3 gap-[2px]"
             >
               {categoriesData.map((cat, i) => (
-                <motion.div
+                <CategoryHeroCard
                   key={cat.id}
-                  layoutId={`category-${cat.id}`}
+                  cat={cat}
+                  index={i}
+                  label={t.categories[cat.id as keyof typeof t.categories]}
                   onClick={() => setActiveCategory(cat.id)}
-                  className="relative aspect-square rounded-full cursor-pointer group flex flex-col items-center justify-center overflow-hidden"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <div className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-gold/50 transition-colors duration-500 z-20" />
-                  <div className="absolute inset-2 rounded-full overflow-hidden bg-neutral-900 shadow-[0_0_40px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_50px_rgba(212,175,55,0.2)] transition-shadow duration-500">
-                    {cat.image ? (
-                      <img src={cat.image} alt={t.categories[cat.id as keyof typeof t.categories]} className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-all duration-700" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <div className="w-24 h-24 rounded-full bg-gold/10 blur-xl group-hover:bg-gold/20 transition-colors duration-500" />
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
-                  </div>
-                  <h3 className="relative z-30 text-2xl md:text-3xl font-bold text-white tracking-wide drop-shadow-lg">
-                    {t.categories[cat.id as keyof typeof t.categories]}
-                  </h3>
-                </motion.div>
+                />
               ))}
             </motion.div>
           )}
 
-          {/* View 2: Detailed Menu */}
-          {activeCategory && (
+          {/* VIEW 2 — Item grid */}
+          {activeCategory && activeCatData && (
             <motion.div
-              key="detailed-menu"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col flex-1"
+              key="item-grid"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.4 }}
             >
-              {/* Horizontal Category Nav */}
+              {/* Tab bar */}
               <div className="flex justify-center mb-12">
-                <div className="flex overflow-x-auto space-x-2 rtl:space-x-reverse pb-4 no-scrollbar max-w-full">
-                  {categoriesData.map((cat) => (
-                    <button
-                      key={`nav-${cat.id}`}
-                      onClick={() => setActiveCategory(cat.id)}
-                      className={`px-6 py-3 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
-                        activeCategory === cat.id 
-                          ? "bg-gold text-black shadow-[0_0_20px_rgba(212,175,55,0.3)]" 
-                          : "bg-neutral-900 text-neutral-400 hover:text-white hover:bg-neutral-800"
-                      }`}
-                    >
-                      {t.categories[cat.id as keyof typeof t.categories]}
-                    </button>
-                  ))}
-                  <button 
+                <div className="flex items-center gap-2 flex-wrap justify-center">
+                  {categoriesData.map((cat) => {
+                    const isActive = activeCategory === cat.id;
+                    return (
+                      <button
+                        key={`tab-${cat.id}`}
+                        onClick={() => setActiveCategory(cat.id)}
+                        className="px-6 py-2.5 text-sm font-bold whitespace-nowrap transition-all duration-300"
+                        style={
+                          isActive
+                            ? {
+                                background: "transparent",
+                                color: "#C8A96E",
+                                borderBottom: "1px solid #C8A96E",
+                                letterSpacing: "0.08em",
+                              }
+                            : {
+                                background: "transparent",
+                                color: "#555",
+                                borderBottom: "1px solid transparent",
+                                letterSpacing: "0.05em",
+                              }
+                        }
+                      >
+                        {t.categories[cat.id as keyof typeof t.categories]}
+                      </button>
+                    );
+                  })}
+                  <button
                     onClick={() => setActiveCategory(null)}
-                    className="px-6 py-3 rounded-full text-sm font-medium whitespace-nowrap text-neutral-400 hover:text-white border border-neutral-800 hover:bg-neutral-900 transition-all duration-300 ml-4 rtl:ml-0 rtl:mr-4"
+                    className="px-5 py-2.5 text-sm font-medium transition-all duration-300"
+                    style={{ background: "transparent", color: "#444", borderBottom: "1px solid transparent", letterSpacing: "0.05em" }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLButtonElement).style.color = "#888";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLButtonElement).style.color = "#444";
+                    }}
                   >
-                    {language === "en" ? "← Back to Categories" : "العودة للفئات →"}
+                    {language === "en" ? "← All" : "← كل"}
                   </button>
                 </div>
               </div>
 
-              {/* Items Grid mapped directly from selected category */}
-              <motion.div 
-                layoutId={`category-${activeCategory}`}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-[1000px] flex-1 content-start"
-              >
+              {/* Cards grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <AnimatePresence mode="popLayout">
-                  {categoryItems[activeCategory].map((itemKey) => (
-                    <MenuCard 
-                      key={itemKey} 
-                      itemKey={itemKey} 
-                      fallbackImage={categoriesData.find(c => c.id === activeCategory)?.image || null} 
+                  {categoryItems[activeCategory].map((itemKey, idx) => (
+                    <MenuCard
+                      key={itemKey}
+                      itemKey={itemKey}
+                      accent={activeCatData.accent}
+                      index={idx}
                     />
                   ))}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
-
       </div>
     </section>
   );
