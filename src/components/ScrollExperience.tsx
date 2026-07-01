@@ -97,7 +97,7 @@ export default function ScrollExperience() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen bg-black overflow-hidden">
+    <div id="home" ref={containerRef} className="relative w-full h-screen bg-black overflow-hidden">
       {imagesLoaded < frameCount && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black">
           <div className="text-gold text-2xl mb-4 font-light tracking-widest">PREPARING EXPERIENCE</div>
@@ -111,15 +111,18 @@ export default function ScrollExperience() {
       )}
       <canvas ref={canvasRef} className="block w-full h-full object-cover" />
       
+      {/* Bottom fade gradient to blend into the next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-20" />
+      
       {/* Overlay Content */}
       <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center z-10">
         
         {/* Hero Text */}
-        <div className="hero-text absolute top-1/4 text-center w-full px-4">
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-4 text-white drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+        <div className="hero-text absolute top-1/4 text-center w-full px-6">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold tracking-tighter mb-4 text-white drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">
             MOKARRMAL
           </h1>
-          <p className="text-xl md:text-3xl text-gold font-light tracking-wide mb-12">
+          <p className="text-lg sm:text-xl md:text-3xl text-gold font-light tracking-wide mb-12">
             Crafted for Flavor. Built for Experience.
           </p>
         </div>

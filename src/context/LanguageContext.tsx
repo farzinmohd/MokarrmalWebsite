@@ -20,11 +20,8 @@ type Translations = {
     };
     categories: {
       burgers: string;
-      shawarma: string;
       pizza: string;
       rice: string;
-      beverages: string;
-      sides: string;
     };
     items: Record<string, { name: string; desc: string; price: string }>;
   };
@@ -46,11 +43,8 @@ const translations: Translations = {
     },
     categories: {
       burgers: "Burgers",
-      shawarma: "Shawarma",
       pizza: "Pizza",
       rice: "Rice Specials",
-      beverages: "Beverages",
-      sides: "Sides"
     },
     items: {
       "Classic Burger": { name: "Classic Burger", desc: "Angus beef, cheddar, lettuce, tomato, special sauce", price: "35 SAR" },
@@ -96,11 +90,8 @@ const translations: Translations = {
     },
     categories: {
       burgers: "برجر",
-      shawarma: "شاورما",
       pizza: "بيتزا",
       rice: "أطباق الأرز",
-      beverages: "مشروبات",
-      sides: "أطباق جانبية"
     },
     items: {
       "Classic Burger": { name: "كلاسيك برجر", desc: "لحم أنجوس، شيدر، خس، طماطم، صوص خاص", price: "35 ريال" },

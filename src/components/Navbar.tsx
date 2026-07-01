@@ -33,7 +33,7 @@ export default function Navbar() {
   const navLinks = [
     { name: t.nav.home, href: "#home" },
     { name: t.nav.menu, href: "#menu" },
-    { name: t.nav.about, href: "#about" },
+    { name: t.nav.about, href: "#contact" },
     { name: t.nav.chefsMenu, href: "#chefs-menu" },
     { name: t.nav.contact, href: "#contact" },
   ];
@@ -98,9 +98,12 @@ export default function Navbar() {
           {/* Desktop Right Side */}
           <div className="hidden lg:flex items-center space-x-6 rtl:space-x-reverse">
             <LanguageToggle />
-            <button className="px-6 py-2.5 bg-gradient-to-r from-gold/80 to-gold text-black rounded-full text-sm font-semibold hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-              {t.nav.orderNow}
-            </button>
+            <a
+              href="tel:+966500000000"
+              className="px-6 py-2.5 bg-gradient-to-r from-gold/80 to-gold text-black rounded-full text-sm font-semibold hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+            >
+              Call Now
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -155,9 +158,12 @@ export default function Navbar() {
 
             <div className="flex flex-col items-center space-y-8 mb-8">
               <LanguageToggle />
-              <button className="w-full max-w-sm py-4 bg-gradient-to-r from-gold/80 to-gold text-black rounded-full text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
-                {t.nav.orderNow}
-              </button>
+              <a
+                href="tel:+966500000000"
+                className="w-full max-w-sm py-4 bg-gradient-to-r from-gold/80 to-gold text-black rounded-full text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(212,175,55,0.4)] text-center block"
+              >
+                Call Now
+              </a>
             </div>
           </motion.div>
         )}

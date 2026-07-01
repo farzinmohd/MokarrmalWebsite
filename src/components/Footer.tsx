@@ -4,7 +4,7 @@ import { MapPin, Phone, Clock, Instagram, Twitter, Facebook } from "lucide-react
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-neutral-900 pt-20 pb-10">
+    <footer id="contact" className="bg-black border-t border-neutral-900 pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-4 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
         
         {/* Brand */}
@@ -27,9 +27,8 @@ export default function Footer() {
             Location
           </h3>
           <p className="text-neutral-400 font-light leading-relaxed">
-            King Fahd Road<br />
-            Olaya District<br />
-            Riyadh, Saudi Arabia
+            First Ring Road, Near The Clock Towers<br />
+            Makkah 24231, Saudi Arabia
           </p>
         </div>
 
@@ -61,6 +60,29 @@ export default function Footer() {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* Google Maps Embed */}
+      <div className="max-w-7xl mx-auto px-4 md:px-12 mb-12">
+        <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+          <MapPin className="text-gold" size={18} />
+          Find Us
+        </h3>
+        <div className="w-full rounded-2xl overflow-hidden border border-neutral-800" style={{ height: "240px" }}>
+          <iframe
+            title="Mokarrmal Location"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=21.4188855,39.8227365&z=17&output=embed"
+          />
+        </div>
+        <p className="mt-3 text-xs text-neutral-600">
+          Al Hajlah, 6103 4207 6861, Makkah 24231, Saudi Arabia — Located in The Clock Towers
+        </p>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-12 border-t border-neutral-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-neutral-600">
