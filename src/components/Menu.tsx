@@ -110,15 +110,13 @@ function MenuCard({
 
   return (
     <motion.div
-      layout
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={() => setHovered(true)}
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      initial={{ opacity: 0, y: 20, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9, y: 20 }}
-      transition={{ duration: 0.4, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      exit={{ opacity: 0, scale: 0.94 }}
+      transition={{ duration: 0.25, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
       className="relative cursor-pointer group"
       style={{
         rotateX,
@@ -200,47 +198,15 @@ function MenuCard({
             {item.desc}
           </p>
 
-          {/* Bottom row */}
-          <div className="flex items-center justify-between mt-2">
-            {/* Dot indicator */}
-            <div className="flex items-center gap-1.5">
-              <div
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ background: accent }}
-              />
-              <span className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: accent }}>
-                Available
-              </span>
-            </div>
-
-            {/* Order button */}
-            <button
-              className="flex items-center gap-1.5 text-[11px] font-bold rounded-full px-4 py-1.5 transition-all duration-300"
-              style={
-                hovered
-                  ? { background: accent, color: "#000" }
-                  : {
-                      background: "transparent",
-                      color: accent,
-                      border: `1px solid ${accent}44`,
-                    }
-              }
-            >
-              {t.nav.orderNow}
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </button>
+          {/* Status row */}
+          <div className="flex items-center gap-1.5 mt-3">
+            <div
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ background: accent }}
+            />
+            <span className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: accent }}>
+              Available
+            </span>
           </div>
         </div>
 
@@ -279,6 +245,7 @@ function CategoryHeroCard({
       className="relative overflow-hidden cursor-pointer"
       style={{
         aspectRatio: "1 / 1",
+        minHeight: "260px",
         borderRadius: "50%",
         border: hovered
           ? "2px solid #C8A96E"
@@ -376,7 +343,7 @@ export default function Menu() {
   return (
     <section
       id="menu"
-      className="relative min-h-screen bg-black py-28 px-4 md:px-12 lg:px-24 overflow-hidden z-20 -mt-[2px]"
+      className="relative min-h-screen bg-black py-16 md:py-28 px-4 md:px-12 lg:px-24 overflow-hidden z-20 -mt-[2px]"
     >
       {/* Ambient background glow */}
       <div className="absolute inset-0 pointer-events-none">
@@ -399,7 +366,7 @@ export default function Menu() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="text-5xl md:text-7xl font-black text-white mb-5 tracking-tight"
+            className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-5 tracking-tight"
           >
             {t.menuSection.title}
           </motion.h2>
@@ -440,11 +407,11 @@ export default function Menu() {
           {/* VIEW 2 — Item grid */}
           {activeCategory && activeCatData && (
             <motion.div
-              key="item-grid"
-              initial={{ opacity: 0, y: 24 }}
+              key={`item-grid-${activeCategory}`}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.4 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             >
               {/* Tab bar */}
               <div className="flex justify-center mb-12">

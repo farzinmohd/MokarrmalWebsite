@@ -44,16 +44,16 @@ export default function ChefRecommendations() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 bg-neutral-950 relative overflow-hidden">
+    <section id="chefs-menu" ref={sectionRef} className="py-16 md:py-24 lg:py-32 bg-neutral-950 relative overflow-hidden">
       {/* Background Lighting Effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10">
-        <h2 ref={titleRef} className="text-4xl md:text-6xl font-bold text-center text-white mb-20">
+        <h2 ref={titleRef} className="text-3xl sm:text-4xl md:text-6xl font-bold text-center text-white mb-12 md:mb-20">
           Chef&apos;s <span className="text-gold italic font-serif">Recommendations</span>
         </h2>
 
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12">
           {/* Card 1 */}
           <div className="group relative bg-black border border-neutral-800 rounded-3xl p-8 hover:border-gold/50 transition-colors duration-500 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10" />
