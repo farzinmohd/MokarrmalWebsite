@@ -33,7 +33,7 @@ export default function Navbar() {
   const navLinks = [
     { name: t.nav.home, href: "#home" },
     { name: t.nav.menu, href: "#menu" },
-    { name: t.nav.about, href: "#contact" },
+    { name: t.nav.about, href: "#about" },
     { name: t.nav.chefsMenu, href: "#chefs-menu" },
     { name: t.nav.contact, href: "#contact" },
   ];

@@ -111,6 +111,10 @@ export default function ScrollExperience() {
       )}
       <canvas ref={canvasRef} className="block w-full h-full object-cover" />
       
+      {/* Side fade gradients to darken the corners/edges */}
+      <div className="absolute top-0 bottom-0 left-0 w-48 md:w-96 bg-gradient-to-r from-black via-black/60 to-transparent pointer-events-none z-20" />
+      <div className="absolute top-0 bottom-0 right-0 w-48 md:w-96 bg-gradient-to-l from-black via-black/60 to-transparent pointer-events-none z-20" />
+
       {/* Bottom fade gradient to blend into the next section */}
       <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-20" />
       

@@ -42,6 +42,19 @@ type Translations = {
       copyright: string;
       websiteBy: string;
     };
+    aboutUs: {
+      title: string;
+      subtitle: string;
+      storyTitle: string;
+      storyText1: string;
+      storyText2: string;
+      stats: {
+        quality: string;
+        qualityLabel: string;
+        experience: string;
+        experienceLabel: string;
+      };
+    };
   };
 };
 
@@ -109,6 +122,19 @@ const translations: Translations = {
       satSun: "Sat - Sun:",
       copyright: "© 2026 Mokarrmal. All rights reserved.",
       websiteBy: "Website by",
+    },
+    aboutUs: {
+      title: "Our Story",
+      subtitle: "The Mokarrmal Legacy",
+      storyTitle: "Redefining Fast Food with Uncompromising Luxury",
+      storyText1: "Born in the heart of Makkah, Mokarrmal was founded on a simple yet revolutionary idea: fast food doesn't have to compromise on quality. We source only the finest ingredients—from premium Wagyu beef to authentic Italian truffles—to craft an experience that is both quick and profoundly satisfying.",
+      storyText2: "Our culinary team merges traditional Saudi hospitality with modern, innovative cooking techniques. Every dish is a masterpiece, designed to offer a cinematic journey of flavor that you won't find anywhere else.",
+      stats: {
+        quality: "100%",
+        qualityLabel: "Premium Ingredients",
+        experience: "5★",
+        experienceLabel: "Luxury Experience",
+      }
     }
   },
   ar: {
@@ -174,6 +200,19 @@ const translations: Translations = {
       satSun: "السبت - الأحد:",
       copyright: "© 2026 مكرمّل. جميع الحقوق محفوظة.",
       websiteBy: "تصميم وتطوير",
+    },
+    aboutUs: {
+      title: "قصتنا",
+      subtitle: "إرث مكرمّل",
+      storyTitle: "إعادة تعريف الوجبات السريعة بفخامة لا تضاهى",
+      storyText1: "وُلد مكرمّل في قلب مكة المكرمة، وتأسس على فكرة بسيطة ولكنها ثورية: الوجبات السريعة لا يجب أن تساوم على الجودة. نحن نستورد فقط أجود المكونات - من لحم الواغيو الفاخر إلى الكمأة الإيطالية الأصيلة - لنصنع تجربة سريعة ومرضية للغاية.",
+      storyText2: "يدمج فريق الطهي لدينا بين الضيافة السعودية التقليدية وتقنيات الطبخ الحديثة والمبتكرة. كل طبق هو تحفة فنية، صُمم ليقدم رحلة سينمائية من النكهات لن تجدها في أي مكان آخر.",
+      stats: {
+        quality: "100%",
+        qualityLabel: "مكونات فاخرة",
+        experience: "5★",
+        experienceLabel: "تجربة فاخرة",
+      }
     }
   },
 };
