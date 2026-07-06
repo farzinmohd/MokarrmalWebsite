@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 
 import { LanguageProvider } from "@/context/LanguageContext";
 import Navbar from "@/components/Navbar";
+import PageTransition from "@/components/PageTransition";
 
 export default function RootLayout({
   children,
@@ -28,7 +29,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-black text-white">
         <LanguageProvider>
           <Navbar />
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
         </LanguageProvider>
       </body>
     </html>

@@ -22,8 +22,26 @@ type Translations = {
       burgers: string;
       pizza: string;
       rice: string;
+      shawarma: string;
+      beverages: string;
+      sides: string;
     };
     items: Record<string, { name: string; desc: string; price: string }>;
+    footer: {
+      tagline: string;
+      location: string;
+      locationAddress: string;
+      hours: string;
+      contact: string;
+      callUs: string;
+      whatsApp: string;
+      getDirections: string;
+      monThu: string;
+      friday: string;
+      satSun: string;
+      copyright: string;
+      websiteBy: string;
+    };
   };
 };
 
@@ -45,6 +63,9 @@ const translations: Translations = {
       burgers: "Burgers",
       pizza: "Pizza",
       rice: "Rice Specials",
+      shawarma: "Shawarma",
+      beverages: "Beverages",
+      sides: "Sides",
     },
     items: {
       "Classic Burger": { name: "Classic Burger", desc: "Angus beef, cheddar, lettuce, tomato, special sauce", price: "35 SAR" },
@@ -73,6 +94,21 @@ const translations: Translations = {
       "Crispy Onion Rings": { name: "Crispy Onion Rings", desc: "Battered thick-cut onion rings, ranch dip", price: "18 SAR" },
       "Mozzarella Sticks": { name: "Mozzarella Sticks", desc: "Fried mozzarella, marinara dipping sauce", price: "22 SAR" },
       "Mokarrmal Salad": { name: "Mokarrmal Salad", desc: "Mixed greens, pomegranate, walnuts, balsamic", price: "35 SAR" }
+    },
+    footer: {
+      tagline: "A luxury fast-food experience redefining taste and quality in Saudi Arabia.",
+      location: "Location",
+      locationAddress: "First Ring Road, Near The Clock Towers, Makkah 24231, Saudi Arabia",
+      hours: "Opening Hours",
+      contact: "Contact",
+      callUs: "Call Us",
+      whatsApp: "WhatsApp",
+      getDirections: "Get Directions",
+      monThu: "Mon - Thu:",
+      friday: "Friday:",
+      satSun: "Sat - Sun:",
+      copyright: "© 2026 Mokarrmal. All rights reserved.",
+      websiteBy: "Website by",
     }
   },
   ar: {
@@ -92,6 +128,9 @@ const translations: Translations = {
       burgers: "برجر",
       pizza: "بيتزا",
       rice: "أطباق الأرز",
+      shawarma: "شاورما",
+      beverages: "مشروبات",
+      sides: "أطباق جانبية",
     },
     items: {
       "Classic Burger": { name: "كلاسيك برجر", desc: "لحم أنجوس، شيدر، خس، طماطم، صوص خاص", price: "35 ريال" },
@@ -120,6 +159,21 @@ const translations: Translations = {
       "Crispy Onion Rings": { name: "حلقات بصل مقرمشة", desc: "حلقات بصل سميكة مقلية، صوص رانش", price: "18 ريال" },
       "Mozzarella Sticks": { name: "أصابع الموزاريلا", desc: "موزاريلا مقلية، صوص مارينارا", price: "22 ريال" },
       "Mokarrmal Salad": { name: "سلطة مكرمّل", desc: "خضار مشكلة، رمان، جوز، بلسميك", price: "35 ريال" }
+    },
+    footer: {
+      tagline: "تجربة طعام فاخرة تُعيد تعريف الذوق والجودة في المملكة العربية السعودية.",
+      location: "الموقع",
+      locationAddress: "الطريق الدائري الأول، بجوار برج الساعة، مكة المكرمة 24231",
+      hours: "ساعات العمل",
+      contact: "التواصل",
+      callUs: "اتصل بنا",
+      whatsApp: "واتساب",
+      getDirections: "احصل على الاتجاهات",
+      monThu: "الاثنين - الخميس:",
+      friday: "الجمعة:",
+      satSun: "السبت - الأحد:",
+      copyright: "© 2026 مكرمّل. جميع الحقوق محفوظة.",
+      websiteBy: "تصميم وتطوير",
     }
   },
 };
