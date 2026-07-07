@@ -14,21 +14,21 @@ import { useLanguage } from "@/context/LanguageContext";
 const categoriesData = [
   {
     id: "burgers",
-    image: "/images/menu/burg.jpeg",
+    image: "/images/menu/burger.jpg",
     accent: "#C8A96E",
     label: "Signature Burgers",
     tagline: "Crafted with prime Angus & Wagyu beef",
   },
   {
     id: "pizza",
-    image: "/images/menu/pizz.jpeg",
+    image: "/images/menu/pizza.png",
     accent: "#C8A96E",
     label: "Artisan Pizzas",
     tagline: "Stone-baked in our wood-fired oven",
   },
   {
     id: "rice",
-    image: "/images/menu/rice.jpeg",
+    image: "/images/menu/rice.png",
     accent: "#C8A96E",
     label: "Heritage Rice",
     tagline: "Traditional Arabian recipes, perfected",
