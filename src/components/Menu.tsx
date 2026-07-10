@@ -14,21 +14,21 @@ import { useLanguage } from "@/context/LanguageContext";
 const categoriesData = [
   {
     id: "burgers",
-    image: "/images/menu/burger.jpg",
+    image: "/media/burger.jpeg",
     accent: "#C8A96E",
     label: "Signature Burgers",
     tagline: "Crafted with prime Angus & Wagyu beef",
   },
   {
     id: "pizza",
-    image: "/images/menu/pizza.png",
+    image: "/media/pizza.png",
     accent: "#C8A96E",
     label: "Artisan Pizzas",
     tagline: "Stone-baked in our wood-fired oven",
   },
   {
     id: "rice",
-    image: "/images/menu/rice.png",
+    image: "/media/rice.png",
     accent: "#C8A96E",
     label: "Heritage Rice",
     tagline: "Traditional Arabian recipes, perfected",
@@ -37,20 +37,39 @@ const categoriesData = [
 
 // ─── Per-item image map ────────────────────────────────────────────────────────
 const itemImages: Record<string, string> = {
-  "Classic Burger":           "/images/menu/classic_burger.png",
-  "Double Cheese Burger":     "/images/menu/double_cheese_burger.png",
-  "Chicken Burger":           "/images/menu/chicken_burger.png",
-  "Spicy Burger":             "/images/menu/spicy_burger.png",
-  "Mokarrmal Special Burger": "/images/menu/special_burger.png",
-  "Margherita Pizza":         "/images/menu/margherita_pizza.png",
-  "Chicken Pizza":            "/images/menu/chicken_pizza.png",
-  "Pepperoni Pizza":          "/images/menu/pepperoni_pizza.png",
-  "BBQ Pizza":                "/images/menu/bbq_pizza.png",
-  "Mokarrmal Signature Pizza":"/images/menu/signature_pizza.png",
-  "Chicken Kabsa":            "/images/menu/chicken_kabsa.png",
-  "Mandi":                    "/images/menu/mandi.png",
-  "Biryani":                  "/images/menu/biryani.png",
-  "Mixed Rice Platter":       "/images/menu/mixed_rice.png",
+  // ── Burgers ──────────────────────────────────────────────────────────────────
+  "Classic Burger":              "/media/classic_burger.png",
+  "Double Cheese Burger":        "/media/double_cheese_burger.png",
+  "Chicken Burger":              "/media/chicken_burger.png",
+  "Spicy Burger":                "/media/spicy_burger.png",
+  "Mokarrmal Special Burger":    "/media/special_burger.png",
+  "Mushroom Burger":             "/media/mushroom_burger.png",
+  "Fish Fillet Burger":          "/media/fish_fillet_burger.png",
+  "Lamb Burger":                 "/media/lamb_burger.png",
+  "Smash Burger":                "/media/smash_burger.png",
+  "Truffle Burger":              "/media/truffle_burger.png",
+  // ── Pizzas ───────────────────────────────────────────────────────────────────
+  "Margherita Pizza":            "/media/margherita_pizza.png",
+  "Chicken Pizza":               "/media/chicken_pizza.png",
+  "Pepperoni Pizza":             "/media/pepperoni_pizza.png",
+  "BBQ Pizza":                   "/media/bbq_pizza.png",
+  "Mokarrmal Signature Pizza":   "/media/signature_pizza.png",
+  "Meat Feast Pizza":            "/media/meat_feast_pizza.png",
+  "Four Cheese Pizza":           "/media/four_cheese_pizza.png",
+  "Seafood Pizza":               "/media/seafood_pizza.png",
+  "Mushroom Pizza":              "/media/mushroom_pizza.png",
+  "Shawarma Pizza":              "/media/shawarma_pizza.png",
+  // ── Rice ─────────────────────────────────────────────────────────────────────
+  "Chicken Kabsa":               "/media/chicken_kabsa.png",
+  "Mandi":                       "/media/mandi.png",
+  "Biryani":                     "/media/biryani.png",
+  "Mixed Rice Platter":          "/media/mixed_rice.png",
+  "Lamb Kabsa":                  "/media/lamb_kabsa.png",
+  "Seafood Rice":                "/media/seafood_rice.png",
+  "Lamb Ouzi":                   "/media/lamb_ouzi.png",
+  "Machboos":                    "/media/machboos.png",
+  "Haneeth":                     "/media/haneeth.png",
+  "Saffron Rice Platter":        "/media/saffron_rice_platter.png",
 };
 
 // ─── Items per category ────────────────────────────────────────────────────────
@@ -61,6 +80,11 @@ const categoryItems: Record<string, string[]> = {
     "Chicken Burger",
     "Spicy Burger",
     "Mokarrmal Special Burger",
+    "Mushroom Burger",
+    "Fish Fillet Burger",
+    "Lamb Burger",
+    "Smash Burger",
+    "Truffle Burger",
   ],
   pizza: [
     "Margherita Pizza",
@@ -68,8 +92,24 @@ const categoryItems: Record<string, string[]> = {
     "Pepperoni Pizza",
     "BBQ Pizza",
     "Mokarrmal Signature Pizza",
+    "Meat Feast Pizza",
+    "Four Cheese Pizza",
+    "Seafood Pizza",
+    "Mushroom Pizza",
+    "Shawarma Pizza",
   ],
-  rice: ["Chicken Kabsa", "Mandi", "Biryani", "Mixed Rice Platter"],
+  rice: [
+    "Chicken Kabsa",
+    "Mandi",
+    "Biryani",
+    "Mixed Rice Platter",
+    "Lamb Kabsa",
+    "Seafood Rice",
+    "Lamb Ouzi",
+    "Machboos",
+    "Haneeth",
+    "Saffron Rice Platter",
+  ],
 };
 
 // ─── Premium Menu Card ────────────────────────────────────────────────────────
@@ -161,18 +201,6 @@ function MenuCard({
           {/* Gradient fade at bottom of image */}
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
 
-          {/* Price badge – top right */}
-          <div
-            className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-black tracking-wide"
-            style={{
-              background: `${accent}22`,
-              color: accent,
-              border: `1px solid ${accent}44`,
-              backdropFilter: "blur(8px)",
-            }}
-          >
-            {item.price}
-          </div>
 
           {/* Shimmer line on hover */}
           <motion.div

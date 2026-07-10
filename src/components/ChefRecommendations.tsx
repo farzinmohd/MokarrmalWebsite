@@ -54,13 +54,16 @@ export default function ChefRecommendations() {
         </h2>
 
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12">
-          {/* Card 1 */}
+          {/* Card 1 – Wagyu Gold Burger */}
           <div className="group relative bg-black border border-neutral-800 rounded-3xl p-8 hover:border-gold/50 transition-colors duration-500 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10" />
             <div className="relative h-64 w-full mb-8 z-20">
-              <div className="w-full h-full bg-neutral-900 rounded-2xl flex items-center justify-center">
-                 {/* Image Placeholder */}
-                 <span className="text-neutral-700">Image 1</span>
+              <div className="w-full h-full bg-neutral-900 rounded-2xl overflow-hidden">
+                <img
+                  src="/media/truffle_burger.png"
+                  alt="Wagyu Gold Burger"
+                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
+                />
               </div>
             </div>
             <div className="relative z-20">
@@ -70,33 +73,39 @@ export default function ChefRecommendations() {
             </div>
           </div>
 
-          {/* Card 2 */}
+          {/* Card 2 – Lamb Ouzi */}
           <div className="group relative bg-black border border-neutral-800 rounded-3xl p-8 hover:border-gold/50 transition-colors duration-500 overflow-hidden mt-0 md:mt-12">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10" />
             <div className="relative h-64 w-full mb-8 z-20">
-              <div className="w-full h-full bg-neutral-900 rounded-2xl flex items-center justify-center">
-                 {/* Image Placeholder */}
-                 <span className="text-neutral-700">Image 2</span>
+              <div className="w-full h-full bg-neutral-900 rounded-2xl overflow-hidden">
+                <img
+                  src="/media/lamb_ouzi.png"
+                  alt="Lamb Ouzi"
+                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
+                />
               </div>
             </div>
             <div className="relative z-20">
-              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Royal Shawarma Platter</h3>
-              <p className="text-neutral-400 mb-6 font-light">Slow-roasted premium cuts, served with artisan bread and authentic garlic emulsion.</p>
+              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Lamb Ouzi</h3>
+              <p className="text-neutral-400 mb-6 font-light">Whole slow-roasted lamb on a bed of fragrant spiced rice, toasted pine nuts, almonds and raisins.</p>
               <button className="text-gold border-b border-gold pb-1 uppercase tracking-widest text-sm hover:text-white hover:border-white transition-all">Discover</button>
             </div>
           </div>
 
-          {/* Card 3 */}
+          {/* Card 3 – Mokarrmal Signature Pizza */}
           <div className="group relative bg-black border border-neutral-800 rounded-3xl p-8 hover:border-gold/50 transition-colors duration-500 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10" />
             <div className="relative h-64 w-full mb-8 z-20">
-              <div className="w-full h-full bg-neutral-900 rounded-2xl flex items-center justify-center">
-                 {/* Image Placeholder */}
-                 <span className="text-neutral-700">Image 3</span>
+              <div className="w-full h-full bg-neutral-900 rounded-2xl overflow-hidden">
+                <img
+                  src="/media/signature_pizza.png"
+                  alt="Mokarrmal Signature Pizza"
+                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
+                />
               </div>
             </div>
             <div className="relative z-20">
-              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Truffle Pizza</h3>
+              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-gold transition-colors">Mokarrmal Signature Pizza</h3>
               <p className="text-neutral-400 mb-6 font-light">Hand-tossed sourdough, rich truffle cream, wild mushrooms, and buffalo mozzarella.</p>
               <button className="text-gold border-b border-gold pb-1 uppercase tracking-widest text-sm hover:text-white hover:border-white transition-all">Discover</button>
             </div>

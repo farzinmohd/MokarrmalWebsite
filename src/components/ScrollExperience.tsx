@@ -32,13 +32,18 @@ export default function ScrollExperience() {
     for (let i = 0; i < frameCount; i++) {
       const img = new Image();
       img.src = currentFrame(i);
-      img.onload = () => {
+      const onComplete = () => {
         loadedCount++;
         setImagesLoaded(loadedCount);
         if (i === 0) render();
       };
+      img.onload = onComplete;
+      img.onerror = onComplete; // count failed images too so overlay always clears
       images.push(img);
     }
+
+    // Safety timeout: force-dismiss the loading overlay after 5 s no matter what
+    const safetyTimer = setTimeout(() => setImagesLoaded(frameCount), 5000);
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -78,19 +83,37 @@ export default function ScrollExperience() {
 
     function render() {
       if (!canvas || !context || !images[airpods.frame]) return;
-      
-      canvas.style.width = "100%";
-      canvas.style.height = "100%";
-      canvas.style.objectFit = "cover";
 
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(images[airpods.frame], 0, 0, canvas.width, canvas.height);
+      // Match canvas pixel size to its CSS display size
+      const container = containerRef.current;
+      const displayWidth  = container ? container.clientWidth  : window.innerWidth;
+      const displayHeight = container ? container.clientHeight : window.innerHeight;
+
+      if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
+        canvas.width  = displayWidth;
+        canvas.height = displayHeight;
+      }
+
+      const img = images[airpods.frame];
+      const imgW = img.naturalWidth  || 1920;
+      const imgH = img.naturalHeight || 1080;
+
+      // object-fit: cover math — scale to fill, then centre
+      const scale = Math.max(displayWidth / imgW, displayHeight / imgH);
+      const drawW = imgW * scale;
+      const drawH = imgH * scale;
+      const offsetX = (displayWidth  - drawW) / 2;
+      const offsetY = (displayHeight - drawH) / 2;
+
+      context.clearRect(0, 0, displayWidth, displayHeight);
+      context.drawImage(img, offsetX, offsetY, drawW, drawH);
     }
 
     const handleResize = () => render();
     window.addEventListener("resize", handleResize);
 
     return () => {
+      clearTimeout(safetyTimer);
       window.removeEventListener("resize", handleResize);
       ScrollTrigger.getAll().forEach(t => t.kill());
     };

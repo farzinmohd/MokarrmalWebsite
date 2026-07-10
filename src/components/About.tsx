@@ -73,8 +73,8 @@ export default function About() {
            >
              <div className="absolute inset-0 bg-neutral-900">
                {/* Placeholder for actual interior/food image. Using one of the menu images as an aesthetic filler if none exist */}
-               <img src="/images/menu/burg.jpeg" alt="Mokarrmal Experience" className="w-full h-full object-cover opacity-60 mix-blend-overlay" />
-               <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/20 to-transparent" />
+               <img src="/media/burger.jpeg" alt="Mokarrmal Experience" className="w-full h-full object-cover opacity-90" />
+               <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-transparent" />
              </div>
              <div className="absolute bottom-8 left-8 flex items-center space-x-2 text-gold">
                 {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
@@ -86,7 +86,7 @@ export default function About() {
              className="absolute bottom-0 left-0 w-[55%] h-[55%] rounded-3xl overflow-hidden border border-gold/20 shadow-[0_0_50px_rgba(212,175,55,0.1)] z-10 backdrop-blur-sm"
            >
              <div className="absolute inset-0 bg-neutral-900/80">
-               <img src="/images/menu/pizz.jpeg" alt="Mokarrmal Quality" className="w-full h-full object-cover opacity-50 mix-blend-overlay" />
+               <img src="/media/pizza.png" alt="Mokarrmal Quality" className="w-full h-full object-cover opacity-50 mix-blend-overlay" />
                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
              </div>
              <div className="absolute inset-0 flex items-center justify-center">
