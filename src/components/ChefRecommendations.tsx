@@ -46,7 +46,11 @@ export default function ChefRecommendations() {
     };
   }, []);
 
-  const offsets = ["mt-0", "md:mt-12", "mt-0"];
+  const dishImages = [
+    "/media/truffle_burger.png",
+    "/media/mandi.png",
+    "/media/mushroom_pizza.png",
+  ];
 
   return (
     <section id="chefs-menu" ref={sectionRef} className="py-16 md:py-24 lg:py-32 bg-neutral-950 relative overflow-hidden">
@@ -62,18 +66,23 @@ export default function ChefRecommendations() {
           {c.dishes.map((dish, i) => (
             <div
               key={i}
-              className={`group relative bg-black border border-neutral-800 rounded-3xl p-8 hover:border-gold/50 transition-colors duration-500 overflow-hidden ${offsets[i]}`}
+              className={`group relative bg-black border border-neutral-800 rounded-3xl overflow-hidden hover:border-gold/50 transition-colors duration-500 ${i === 1 ? "md:mt-12" : ""}`}
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10" />
-              <div className="relative h-64 w-full mb-8 z-20">
-                <div className="w-full h-full bg-neutral-900 rounded-2xl flex items-center justify-center">
-                  <span className="text-neutral-700">Image {i + 1}</span>
-                </div>
+              {/* Image - top 60% */}
+              <div className="relative h-56 w-full overflow-hidden">
+                <img
+                  src={dishImages[i]}
+                  alt={dish.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80 group-hover:opacity-100"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black" />
               </div>
-              <div className="relative z-20">
+
+              {/* Text - bottom 40% */}
+              <div className="p-8">
                 <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-gold transition-colors">{dish.name}</h3>
-                <p className="text-neutral-400 mb-6 font-light">{dish.desc}</p>
-                <button className="text-gold border-b border-gold pb-1 uppercase tracking-widest text-sm hover:text-white hover:border-white transition-all">
+                <p className="text-neutral-400 mb-6 font-light text-sm leading-relaxed">{dish.desc}</p>
+                <button className="text-gold border-b border-gold pb-1 uppercase tracking-widest text-xs hover:text-white hover:border-white transition-all">
                   {dish.discover}
                 </button>
               </div>
