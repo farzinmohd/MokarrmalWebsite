@@ -3,7 +3,6 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import { Star } from "lucide-react";
 
 export default function About() {
   const { t } = useLanguage();
@@ -65,38 +64,73 @@ export default function About() {
           </div>
         </motion.div>
 
-        {/* Right Side: Visual/Images */}
-        <div className="relative h-[600px] w-full hidden lg:block">
-           <motion.div 
-             style={{ y: y1, opacity }} 
-             className="absolute top-0 right-10 w-[60%] h-[65%] rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl z-20"
-           >
-             <div className="absolute inset-0 bg-neutral-900">
-               {/* Placeholder for actual interior/food image. Using one of the menu images as an aesthetic filler if none exist */}
-               <img src="/images/menu/burg.jpeg" alt="Mokarrmal Experience" className="w-full h-full object-cover opacity-60 mix-blend-overlay" />
-               <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/20 to-transparent" />
-             </div>
-             <div className="absolute bottom-8 left-8 flex items-center space-x-2 text-gold">
-                {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
-             </div>
-           </motion.div>
-           
-           <motion.div 
-             style={{ y: y2, opacity }}
-             className="absolute bottom-0 left-0 w-[55%] h-[55%] rounded-3xl overflow-hidden border border-gold/20 shadow-[0_0_50px_rgba(212,175,55,0.1)] z-10 backdrop-blur-sm"
-           >
-             <div className="absolute inset-0 bg-neutral-900/80">
-               <img src="/images/menu/pizz.jpeg" alt="Mokarrmal Quality" className="w-full h-full object-cover opacity-50 mix-blend-overlay" />
-               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
-             </div>
-             <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-32 h-32 rounded-full border border-gold/30 flex items-center justify-center p-2">
-                   <div className="w-full h-full rounded-full border border-gold/50 flex items-center justify-center animate-[spin_10s_linear_infinite]">
-                      <span className="text-gold font-bold tracking-widest text-xs">MOKARRMAL</span>
-                   </div>
+        {/* Right Side: Premium Credential Cards */}
+        <div className="w-full hidden lg:flex flex-col justify-center gap-6">
+
+          {/* Card 1 — Founding Story */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            className="w-full rounded-2xl border border-neutral-800 bg-neutral-950/80 backdrop-blur-md p-8 shadow-2xl hover:border-gold/40 transition-colors duration-500 group"
+          >
+            <div className="flex items-start gap-6">
+              <div className="w-14 h-14 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0 group-hover:bg-gold/20 transition-colors duration-500">
+                <span className="text-gold text-2xl">🕌</span>
+              </div>
+              <div>
+                <p className="text-xs tracking-[0.2em] text-gold uppercase mb-2">{a.card1.label}</p>
+                <h4 className="text-white font-bold text-xl mb-2">{a.card1.title}</h4>
+                <p className="text-neutral-500 text-sm leading-relaxed">{a.card1.desc}</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Card 2 — Ingredient Promise */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.25 }}
+            className="w-full rounded-2xl border border-gold/20 bg-gradient-to-br from-neutral-950 to-neutral-900 backdrop-blur-md p-8 shadow-[0_0_40px_rgba(212,175,55,0.08)] hover:shadow-[0_0_50px_rgba(212,175,55,0.15)] transition-all duration-500 group"
+          >
+            <div className="flex items-start gap-6">
+              <div className="w-14 h-14 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0 group-hover:bg-gold/20 transition-colors duration-500">
+                <span className="text-gold text-2xl">✦</span>
+              </div>
+              <div>
+                <p className="text-xs tracking-[0.2em] text-gold uppercase mb-2">{a.card2.label}</p>
+                <h4 className="text-white font-bold text-xl mb-3">{a.card2.title}</h4>
+                <div className="flex flex-wrap gap-3">
+                  {a.card2.tags.map((tag) => (
+                    <span key={tag} className="text-[11px] text-gold/80 border border-gold/20 px-3 py-1 rounded-full bg-gold/5">{tag}</span>
+                  ))}
                 </div>
-             </div>
-           </motion.div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Card 3 — Stats Strip */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.4 }}
+            className="w-full rounded-2xl border border-neutral-800 bg-neutral-950/80 p-6 flex items-center justify-around divide-x divide-neutral-800 rtl:divide-x-reverse"
+          >
+            {[
+              [a.card3.val1, a.card3.label1],
+              [a.card3.val2, a.card3.label2],
+              [a.card3.val3, a.card3.label3],
+            ].map(([val, label]) => (
+              <div key={label} className="text-center flex-1">
+                <p className="text-2xl font-bold text-white">{val}</p>
+                <p className="text-[11px] text-gold tracking-widest uppercase mt-1">{label}</p>
+              </div>
+            ))}
+          </motion.div>
+
         </div>
 
       </div>
