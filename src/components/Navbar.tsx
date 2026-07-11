@@ -41,14 +41,15 @@ export default function Navbar() {
   const LanguageToggle = () => (
     <button
       onClick={toggleLanguage}
-      className="relative flex items-center w-16 h-8 bg-neutral-900/50 backdrop-blur-md rounded-full p-1 border border-neutral-800 hover:border-gold/50 transition-colors"
+      dir="ltr"
+      className="relative flex items-center w-[72px] h-8 bg-neutral-900/50 backdrop-blur-md rounded-full p-1 border border-neutral-800 hover:border-gold/50 transition-colors overflow-hidden"
       aria-label="Toggle Language"
     >
-      <span className="absolute left-2 text-[10px] font-medium text-neutral-400">EN</span>
-      <span className="absolute right-2 text-[10px] font-medium text-neutral-400">AR</span>
+      <span className="absolute left-2 text-[10px] font-medium text-neutral-400 select-none z-0">EN</span>
+      <span className="absolute right-2 text-[10px] font-medium text-neutral-400 select-none z-0">AR</span>
       <motion.div
-        className="w-6 h-6 bg-gold rounded-full z-10 shadow-[0_0_10px_rgba(212,175,55,0.4)]"
-        animate={{ x: language === "en" ? 0 : 32 }}
+        className="w-6 h-6 bg-gold rounded-full z-10 shadow-[0_0_10px_rgba(212,175,55,0.4)] flex-shrink-0"
+        animate={{ x: language === "en" ? 0 : 36 }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       />
     </button>

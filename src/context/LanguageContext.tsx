@@ -54,6 +54,13 @@ type Translations = {
         experience: string;
         experienceLabel: string;
       };
+      card1: { label: string; title: string; desc: string };
+      card2: { label: string; title: string; tags: string[] };
+      card3: { val1: string; label1: string; val2: string; label2: string; val3: string; label3: string };
+    };
+    chefsSection: {
+      title: string;
+      dishes: { name: string; desc: string; discover: string }[];
     };
   };
 };
@@ -153,7 +160,30 @@ const translations: Translations = {
         qualityLabel: "Premium Ingredients",
         experience: "5★",
         experienceLabel: "Luxury Experience",
+      },
+      card1: {
+        label: "Founded in Makkah",
+        title: "Born From Passion",
+        desc: "A vision to bring world-class luxury dining to the heart of Saudi Arabia, served fast and without compromise."
+      },
+      card2: {
+        label: "Our Commitment",
+        title: "Zero Compromise Ingredients",
+        tags: ["Wagyu Beef", "Italian Truffle", "Fresh Daily"]
+      },
+      card3: {
+        val1: "100%", label1: "Premium Ingredients",
+        val2: "5★", label2: "Rated Experience",
+        val3: "Halal", label3: "Certified"
       }
+    },
+    chefsSection: {
+      title: "Chef's Recommendations",
+      dishes: [
+        { name: "Wagyu Gold Burger", desc: "A masterpiece of flavor. 100% Wagyu beef patty, vintage cheddar, and our secret gold sauce.", discover: "Discover" },
+        { name: "Royal Shawarma Platter", desc: "Slow-roasted premium cuts, served with artisan bread and authentic garlic emulsion.", discover: "Discover" },
+        { name: "Truffle Pizza", desc: "Hand-tossed sourdough, rich truffle cream, wild mushrooms, and buffalo mozzarella.", discover: "Discover" }
+      ]
     }
   },
   ar: {
@@ -250,7 +280,30 @@ const translations: Translations = {
         qualityLabel: "مكونات فاخرة",
         experience: "5★",
         experienceLabel: "تجربة فاخرة",
+      },
+      card1: {
+        label: "تأسست في مكة المكرمة",
+        title: "ولد من الشغف",
+        desc: "رؤية لجلب أرقى تجارب الطعام إلى قلب المملكة العربية السعودية، بسرعة ودون تنازلات."
+      },
+      card2: {
+        label: "تعهدنا",
+        title: "مكونات بلا تساهل",
+        tags: ["لحم واغيو", "كمأة إيطالية", "طازج يومياً"]
+      },
+      card3: {
+        val1: "100%", label1: "مكونات فاخرة",
+        val2: "5★", label2: "تجربة ممتازة",
+        val3: "حلال", label3: "معتمد"
       }
+    },
+    chefsSection: {
+      title: "توصيات الشيف",
+      dishes: [
+        { name: "برجر واغيو الذهبي", desc: "تحفة فنية من النكهات. شريحة لحم واغيو 100٪، شيدر معتق، وصوصنا الذهبي السري.", discover: "اكتشف" },
+        { name: "طبق شاورما ملكي", desc: "قطع فاخرة مشوية ببطء، تُقدّم مع خبز الحرفيين وإيمولسيون الثوم الأصيل.", discover: "اكتشف" },
+        { name: "بيتزا الكمأة", desc: "عجينة محضرة يدوياً، كريمة الكمأة الغنية، فطر بري، وموزاريلا جاموس.", discover: "اكتشف" }
+      ]
     }
   },
 };
