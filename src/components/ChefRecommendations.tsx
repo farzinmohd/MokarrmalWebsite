@@ -53,7 +53,7 @@ export default function ChefRecommendations() {
   ];
 
   return (
-    <section id="chefs-menu" ref={sectionRef} className="py-16 md:py-24 lg:py-32 bg-neutral-950 relative overflow-hidden">
+    <section id="chefs-menu" ref={sectionRef} className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-black via-neutral-950 to-black relative overflow-hidden">
       {/* Background Lighting Effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/10 rounded-full blur-[120px] pointer-events-none" />
 

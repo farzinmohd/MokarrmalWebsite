@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Mokarrmal Restaurant | Premium Experience",
+  title: "Mokarmal Restaurant | Premium Experience",
   description: "Crafted for Flavor. Built for Experience. Premium burgers, shawarma, rice dishes, and pizzas in Saudi Arabia.",
 };
 

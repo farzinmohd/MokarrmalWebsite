@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { Menu, X } from "lucide-react";
@@ -65,11 +66,11 @@ export default function Navbar() {
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.4, ease: [0.1, 0.25, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-center transition-all duration-500 ${
-          scrolled ? "py-4" : "py-8"
+          scrolled ? "py-1" : "py-3"
         }`}
       >
         <div
-          className={`flex items-center justify-between w-full max-w-7xl mx-4 md:mx-12 px-6 py-3 rounded-full transition-all duration-500 ${
+          className={`flex items-center justify-between w-full max-w-6xl mx-auto px-8 h-14 rounded-full transition-all duration-500 ${
             scrolled
               ? "bg-black/60 backdrop-blur-xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]"
               : "bg-transparent border border-transparent"
@@ -77,9 +78,16 @@ export default function Navbar() {
         >
           {/* Logo */}
           <div className="flex-shrink-0">
-            <span className="text-xl md:text-2xl font-bold tracking-widest text-white cursor-pointer">
-              MOKARRMAL<span className="text-gold">.</span>
-            </span>
+            <a href="#home" aria-label="Mokarmal - Go to homepage">
+              <Image
+                src="/images/mokarmal-logo.png"
+                alt="Mokarmal Restaurant Logo"
+                width={160}
+                height={60}
+                className="h-8 w-auto object-contain md:h-9"
+                priority
+              />
+            </a>
           </div>
 
           {/* Desktop Navigation */}
@@ -101,7 +109,7 @@ export default function Navbar() {
             <LanguageToggle />
             <a
               href="tel:+966500000000"
-              className="px-6 py-2.5 bg-gradient-to-r from-gold/80 to-gold text-black rounded-full text-sm font-semibold hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+              className="px-5 py-1.5 bg-gradient-to-r from-gold/80 to-gold text-black rounded-full text-sm font-semibold hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
             >
               Call Now
             </a>
@@ -129,9 +137,15 @@ export default function Navbar() {
             className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-2xl flex flex-col px-6 py-8"
           >
             <div className="flex justify-between items-center w-full max-w-7xl mx-auto mb-16">
-              <span className="text-2xl font-bold tracking-widest text-white">
-                MOKARRMAL<span className="text-gold">.</span>
-              </span>
+              <a href="#home" aria-label="Mokarmal - Go to homepage" onClick={() => setMobileMenuOpen(false)}>
+                <Image
+                  src="/images/mokarmal-logo.png"
+                  alt="Mokarmal Restaurant Logo"
+                  width={140}
+                  height={52}
+                  className="h-7 w-auto object-contain"
+                />
+              </a>
               <button
                 className="text-white p-2"
                 onClick={() => setMobileMenuOpen(false)}

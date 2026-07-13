@@ -13,7 +13,7 @@ export default function Footer() {
         
         {/* Brand */}
         <div>
-          <h2 className="text-3xl font-bold text-white mb-6">MOKARRMAL</h2>
+          <h2 className="text-3xl font-bold text-white mb-6">MOKARMAL</h2>
           <p className="text-neutral-400 font-light mb-6 leading-relaxed">
             {f.tagline}
           </p>

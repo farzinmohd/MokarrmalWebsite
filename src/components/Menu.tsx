@@ -273,7 +273,7 @@ function CategoryHeroCard({
       className="relative overflow-hidden cursor-pointer"
       style={{
         aspectRatio: "1 / 1",
-        minHeight: "260px",
+        minHeight: "200px",
         borderRadius: "50%",
         border: hovered
           ? "2px solid #C8A96E"
@@ -418,7 +418,7 @@ export default function Menu() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.35 }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-[2px]"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto"
             >
               {categoriesData.map((cat, i) => (
                 <CategoryHeroCard

@@ -147,9 +147,9 @@ export default function ScrollExperience() {
         {/* Hero Text */}
         <div className="hero-text absolute top-1/4 text-center w-full px-6">
           <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold tracking-tighter mb-4 text-white drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]">
-            MOKARRMAL
+            MOKARMAL
           </h1>
-          <p className="text-lg sm:text-xl md:text-3xl text-gold font-light tracking-wide mb-12">
+          <p className="text-lg sm:text-xl md:text-3xl text-gold font-medium tracking-wide mb-12 drop-shadow-[0_2px_12px_rgba(0,0,0,1)] drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]">
             Crafted for Flavor. Built for Experience.
           </p>
         </div>

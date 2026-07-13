@@ -57,6 +57,8 @@ type Translations = {
       card1: { label: string; title: string; desc: string };
       card2: { label: string; title: string; tags: string[] };
       card3: { val1: string; label1: string; val2: string; label2: string; val3: string; label3: string };
+      reviews: { name: string; rating: number; comment: string }[];
+      gallery: { num: string; title: string; subtitle: string }[];
     };
     chefsSection: {
       title: string;
@@ -92,7 +94,7 @@ const translations: Translations = {
       "Double Cheese Burger": { name: "Double Cheese Burger", desc: "Double Angus beef, double cheddar, caramelized onions", price: "55 SAR" },
       "Chicken Burger": { name: "Chicken Burger", desc: "Crispy chicken breast, slaw, spicy mayo", price: "38 SAR" },
       "Spicy Burger": { name: "Spicy Burger", desc: "Angus beef, jalapenos, pepper jack, spicy sauce", price: "42 SAR" },
-      "Mokarrmal Special Burger": { name: "Mokarrmal Special Burger", desc: "Wagyu beef, truffle mayo, aged cheddar, brioche", price: "65 SAR" },
+      "Mokarrmal Special Burger": { name: "Mokarmal Special Burger", desc: "Wagyu beef, truffle mayo, aged cheddar, brioche", price: "65 SAR" },
       "Chicken Shawarma": { name: "Chicken Shawarma", desc: "Spiced chicken, garlic sauce, fresh pickles", price: "25 SAR" },
       "Beef Shawarma": { name: "Beef Shawarma", desc: "Premium beef, tahini, parsley, onions", price: "28 SAR" },
       "Mixed Shawarma": { name: "Mixed Shawarma", desc: "Chicken and beef, mixed sauces, fries", price: "32 SAR" },
@@ -101,7 +103,7 @@ const translations: Translations = {
       "Chicken Pizza": { name: "Chicken Pizza", desc: "Grilled chicken, mushrooms, garlic white sauce", price: "55 SAR" },
       "Pepperoni Pizza": { name: "Pepperoni Pizza", desc: "Premium beef pepperoni, mozzarella, oregano", price: "50 SAR" },
       "BBQ Pizza": { name: "BBQ Pizza", desc: "Smoked chicken, BBQ sauce, red onions", price: "55 SAR" },
-      "Mokarrmal Signature Pizza": { name: "Mokarrmal Signature Pizza", desc: "Truffle paste, wild mushrooms, 24k gold leaf", price: "95 SAR" },
+      "Mokarrmal Signature Pizza": { name: "Mokarmal Signature Pizza", desc: "Truffle paste, wild mushrooms, 24k gold leaf", price: "95 SAR" },
       "Chicken Kabsa": { name: "Chicken Kabsa", desc: "Traditional spiced rice, roasted half chicken", price: "40 SAR" },
       "Mandi": { name: "Mandi", desc: "Smoked basmati rice, tender lamb, mandi spices", price: "60 SAR" },
       "Biryani": { name: "Biryani", desc: "Fragrant saffron rice, marinated chicken", price: "45 SAR" },
@@ -132,7 +134,7 @@ const translations: Translations = {
       "Truffle Fries": { name: "Truffle Fries", desc: "Crispy fries, truffle oil, parmesan", price: "25 SAR" },
       "Crispy Onion Rings": { name: "Crispy Onion Rings", desc: "Battered thick-cut onion rings, ranch dip", price: "18 SAR" },
       "Mozzarella Sticks": { name: "Mozzarella Sticks", desc: "Fried mozzarella, marinara dipping sauce", price: "22 SAR" },
-      "Mokarrmal Salad": { name: "Mokarrmal Salad", desc: "Mixed greens, pomegranate, walnuts, balsamic", price: "35 SAR" }
+      "Mokarrmal Salad": { name: "Mokarmal Salad", desc: "Mixed greens, pomegranate, walnuts, balsamic", price: "35 SAR" }
     },
     footer: {
       tagline: "A luxury fast-food experience redefining taste and quality in Saudi Arabia.",
@@ -146,14 +148,14 @@ const translations: Translations = {
       monThu: "Mon - Thu:",
       friday: "Friday:",
       satSun: "Sat - Sun:",
-      copyright: "© 2026 Mokarrmal. All rights reserved.",
+      copyright: "© 2026 Mokarmal. All rights reserved.",
       websiteBy: "Website by",
     },
     aboutUs: {
       title: "Our Story",
-      subtitle: "The Mokarrmal Legacy",
+      subtitle: "The Mokarmal Legacy",
       storyTitle: "Redefining Fast Food with Uncompromising Luxury",
-      storyText1: "Born in the heart of Makkah, Mokarrmal was founded on a simple yet revolutionary idea: fast food doesn't have to compromise on quality. We source only the finest ingredients—from premium Wagyu beef to authentic Italian truffles—to craft an experience that is both quick and profoundly satisfying.",
+      storyText1: "Born in the heart of Makkah, Mokarmal was founded on a simple yet revolutionary idea: fast food doesn't have to compromise on quality. We source only the finest ingredients—from premium Wagyu beef to authentic Italian truffles—to craft an experience that is both quick and profoundly satisfying.",
       storyText2: "Our culinary team merges traditional Saudi hospitality with modern, innovative cooking techniques. Every dish is a masterpiece, designed to offer a cinematic journey of flavor that you won't find anywhere else.",
       stats: {
         quality: "100%",
@@ -175,13 +177,47 @@ const translations: Translations = {
         val1: "100%", label1: "Premium Ingredients",
         val2: "5★", label2: "Rated Experience",
         val3: "Halal", label3: "Certified"
-      }
+      },
+      reviews: [
+        {
+          name: "Abdulrahman Al-Fahad",
+          rating: 5,
+          comment: "Absolutely the best Wagyu burger in Makkah. The truffle mayo is incredibly rich, and the presentation is outstanding. A true premium experience!"
+        },
+        {
+          name: "Sarah Mitchell",
+          rating: 5,
+          comment: "The Alfahm Mandi is cooked to perfection—super tender meat and highly aromatic rice. The luxury dark setting is stunning."
+        },
+        {
+          name: "Fahad K.",
+          rating: 4,
+          comment: "A unique fusion of fast dining and high-end luxury. The atmosphere is top-notch and the Truffle Pizza is absolutely brilliant."
+        }
+      ],
+      gallery: [
+        {
+          num: "01",
+          title: "The Vibe",
+          subtitle: "Experience the lively heart of our open kitchen, where authentic flavors come to life daily."
+        },
+        {
+          num: "02",
+          title: "The Space",
+          subtitle: "Settle into a refined, comfortable dining room crafted to host memorable family gatherings."
+        },
+        {
+          num: "03",
+          title: "The Craft",
+          subtitle: "Witness clean architectural details and golden lighting, elevating fast food into luxury."
+        }
+      ]
     },
     chefsSection: {
       title: "Chef's Recommendations",
       dishes: [
         { name: "Wagyu Gold Burger", desc: "A masterpiece of flavor. 100% Wagyu beef patty, vintage cheddar, and our secret gold sauce.", discover: "Discover" },
-        { name: "Royal Shawarma Platter", desc: "Slow-roasted premium cuts, served with artisan bread and authentic garlic emulsion.", discover: "Discover" },
+        { name: "Alfahm Mandi", desc: "Slow-roasted premium cuts, served with artisan bread and authentic garlic emulsion.", discover: "Discover" },
         { name: "Truffle Pizza", desc: "Hand-tossed sourdough, rich truffle cream, wild mushrooms, and buffalo mozzarella.", discover: "Discover" }
       ]
     }
@@ -295,13 +331,47 @@ const translations: Translations = {
         val1: "100%", label1: "مكونات فاخرة",
         val2: "5★", label2: "تجربة ممتازة",
         val3: "حلال", label3: "معتمد"
-      }
+      },
+      reviews: [
+        {
+          name: "عبد الرحمن الفهد",
+          rating: 5,
+          comment: "بلا شك أفضل برجر واغيو في مكة المكرمة. مايونيز الكمأة غني للغاية والتقديم رائع. تجربة فاخرة بحق!"
+        },
+        {
+          name: "سارة ميتشل",
+          rating: 5,
+          comment: "مندي الفحم مطهو بإتقان - لحم طري للغاية وأرز عطري مميز. الأجواء الداكنة الفاخرة مذهلة."
+        },
+        {
+          name: "فهد ك.",
+          rating: 4,
+          comment: "مزيج فريد بين الخدمة السريعة والفخامة الراقية. الأجواء رائعة وبيتزا الكمأة ممتازة ولذيذة جداً."
+        }
+      ],
+      gallery: [
+        {
+          num: "01",
+          title: "الأجواء",
+          subtitle: "عِش تجربة تفاعلية ممتعة بمشاهدة مطبخنا المفتوح حيث تنبض النكهات الأصيلة بالحياة يومياً."
+        },
+        {
+          num: "02",
+          title: "المساحة",
+          subtitle: "استمتع بتناول طعامك في صالة جلوس مريحة وفاخرة صُممت خصيصاً لتناسب لقاءاتكم العائلية الدافئة."
+        },
+        {
+          num: "03",
+          title: "الحِرفة",
+          subtitle: "شاهد روعة التصاميم المعمارية والإضاءة الذهبية التي تضفي لمسة من الرقي والراحة على المكان."
+        }
+      ]
     },
     chefsSection: {
       title: "توصيات الشيف",
       dishes: [
         { name: "برجر واغيو الذهبي", desc: "تحفة فنية من النكهات. شريحة لحم واغيو 100٪، شيدر معتق، وصوصنا الذهبي السري.", discover: "اكتشف" },
-        { name: "طبق شاورما ملكي", desc: "قطع فاخرة مشوية ببطء، تُقدّم مع خبز الحرفيين وإيمولسيون الثوم الأصيل.", discover: "اكتشف" },
+        { name: "الفحم مندي", desc: "قطع فاخرة مشوية ببطء، تُقدّم مع خبز الحرفيين وإيمولسيون الثوم الأصيل.", discover: "اكتشف" },
         { name: "بيتزا الكمأة", desc: "عجينة محضرة يدوياً، كريمة الكمأة الغنية، فطر بري، وموزاريلا جاموس.", discover: "اكتشف" }
       ]
     }
