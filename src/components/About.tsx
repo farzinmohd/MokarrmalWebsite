@@ -252,7 +252,7 @@ export default function About() {
 
                 {/* Comment Text */}
                 <p className="text-[13px] text-neutral-400 font-light leading-relaxed italic mb-8 relative z-10">
-                  "{review.comment}"
+                  &ldquo;{review.comment}&rdquo;
                 </p>
               </div>
 
