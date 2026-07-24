@@ -47,9 +47,9 @@ export default function ChefRecommendations() {
   }, []);
 
   const dishImages = [
-    "/media/truffle_burger.png",
-    "/media/mandi.png",
-    "/media/mushroom_pizza.png",
+    "/images/menu/burger_3.png",
+    "/images/menu/Mutton Madhooth.jpeg",
+    "/images/menu/21.png",
   ];
 
   return (
@@ -69,13 +69,14 @@ export default function ChefRecommendations() {
               className={`group relative bg-black border border-neutral-800 rounded-3xl overflow-hidden hover:border-gold/50 transition-colors duration-500 ${i === 1 ? "md:mt-12" : ""}`}
             >
               {/* Image - top 60% */}
-              <div className="relative h-56 w-full overflow-hidden">
+              <div className="relative h-72 sm:h-80 w-full overflow-hidden bg-[#ffcc00]">
                 <img
                   src={dishImages[i]}
                   alt={dish.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-80 group-hover:opacity-100"
+                  className={`w-full h-full object-contain transition-transform duration-700 ease-out ${i === 1 ? "group-hover:scale-105" : "group-hover:scale-105"}`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black" />
+                {/* Add a fade to black to match the premium AI images */}
+                <div className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none ${i === 1 ? "opacity-100" : "opacity-30"}`} />
               </div>
 
               {/* Text - bottom 40% */}

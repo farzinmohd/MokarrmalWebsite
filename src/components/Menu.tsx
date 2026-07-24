@@ -9,6 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import { Footprints } from "lucide-react";
 
 // ─── Category metadata ────────────────────────────────────────────────────────
 const categoriesData = [
@@ -38,77 +39,70 @@ const categoriesData = [
 // ─── Per-item image map ────────────────────────────────────────────────────────
 const itemImages: Record<string, string> = {
   // ── Burgers ──────────────────────────────────────────────────────────────────
-  "Classic Burger":              "/media/classic_burger.png",
-  "Double Cheese Burger":        "/media/double_cheese_burger.png",
-  "Chicken Burger":              "/media/chicken_burger.png",
-  "Spicy Burger":                "/media/spicy_burger.png",
-  "Mokarrmal Special Burger":    "/media/special_burger.png",
+  "Chicken Beef Burger":         "/images/menu/burger_1.png",
+  "Chicken Beef Double Burger":  "/images/menu/burger_2.png",
+  "Zinger Double Burger":        "/images/menu/burger_3.png",
+  "Fish Burger":                 "/images/menu/burger_4.png",
+  "Shrimp Burger":               "/images/menu/burger_5.png",
   "Mushroom Burger":             "/media/mushroom_burger.png",
   "Fish Fillet Burger":          "/media/fish_fillet_burger.png",
   "Lamb Burger":                 "/media/lamb_burger.png",
   "Smash Burger":                "/media/smash_burger.png",
   "Truffle Burger":              "/media/truffle_burger.png",
   // ── Pizzas ───────────────────────────────────────────────────────────────────
-  "Margherita Pizza":            "/media/margherita_pizza.png",
-  "Chicken Pizza":               "/media/chicken_pizza.png",
-  "Pepperoni Pizza":             "/media/pepperoni_pizza.png",
-  "BBQ Pizza":                   "/media/bbq_pizza.png",
-  "Mokarrmal Signature Pizza":   "/media/signature_pizza.png",
-  "Meat Feast Pizza":            "/media/meat_feast_pizza.png",
-  "Four Cheese Pizza":           "/media/four_cheese_pizza.png",
-  "Seafood Pizza":               "/media/seafood_pizza.png",
+  "Vegetable Pizza":             "/images/menu/11.png",
+  "Pineapple Pizza":             "/images/menu/12.png",
+  "Nutella Pizza":             "/images/menu/13_side_angle_resized.png",
+  "Super Pepperoni":                   "/images/menu/14.png",
+  "Chicken BBQ":                 "/images/menu/21.png",
+  "Cheese Pizza":                "/images/menu/22.png",
+  "Minced Beef Pizza":           "/images/menu/23.png",
+  "Chicken Roanch Pizza":        "/images/menu/24.png",
   "Mushroom Pizza":              "/media/mushroom_pizza.png",
   "Shawarma Pizza":              "/media/shawarma_pizza.png",
   // ── Rice ─────────────────────────────────────────────────────────────────────
-  "Chicken Kabsa":               "/media/chicken_kabsa.png",
-  "Mandi":                       "/media/mandi.png",
-  "Biryani":                     "/media/biryani.png",
-  "Mixed Rice Platter":          "/media/mixed_rice.png",
-  "Lamb Kabsa":                  "/media/lamb_kabsa.png",
-  "Seafood Rice":                "/media/seafood_rice.png",
-  "Lamb Ouzi":                   "/media/lamb_ouzi.png",
-  "Machboos":                    "/media/machboos.png",
-  "Haneeth":                     "/media/haneeth.png",
-  "Saffron Rice Platter":        "/media/saffron_rice_platter.png",
+  "Grilled Chicken With Rice":   "/images/menu/rice_1.png",
+  "Grilled Fish With Rice":      "/images/menu/rice_2.png",
+  "Chicken Biryani":             "/images/menu/rice_3.png",
+  "Beef Biryani":                "/images/menu/rice_4.png",
+  "Shrimp Biryani":              "/images/menu/Shrimp biryani.jpeg",
+  "Grill Shrimp With Rice":      "/images/menu/Grill shrimp with rice.jpeg",
+  "Mutton Madhooth":             "/images/menu/Mutton Madhooth.jpeg",
+  "Chicken Madhooth":            "/images/menu/Chicken madhooth.jpeg",
+  "Chicken Kabsa":               "/images/menu/Chicken kabsa.jpeg",
+  "Mandi Chicken With Rice":     "/images/menu/Mandhi chicken with rice.jpeg",
 };
 
 // ─── Items per category ────────────────────────────────────────────────────────
 const categoryItems: Record<string, string[]> = {
   burgers: [
-    "Classic Burger",
-    "Double Cheese Burger",
-    "Chicken Burger",
-    "Spicy Burger",
-    "Mokarrmal Special Burger",
-    "Mushroom Burger",
-    "Fish Fillet Burger",
-    "Lamb Burger",
-    "Smash Burger",
-    "Truffle Burger",
+    "Chicken Beef Burger",
+    "Chicken Beef Double Burger",
+    "Zinger Double Burger",
+    "Fish Burger",
+    "Shrimp Burger",
   ],
   pizza: [
-    "Margherita Pizza",
-    "Chicken Pizza",
-    "Pepperoni Pizza",
-    "BBQ Pizza",
-    "Mokarrmal Signature Pizza",
-    "Meat Feast Pizza",
-    "Four Cheese Pizza",
-    "Seafood Pizza",
-    "Mushroom Pizza",
-    "Shawarma Pizza",
+    "Vegetable Pizza",
+    "Pineapple Pizza",
+    "Nutella Pizza",
+    "Super Pepperoni",
+    "Chicken BBQ",
+    "Cheese Pizza",
+    "Minced Beef Pizza",
+    "Chicken Roanch Pizza",
   ],
   rice: [
+    "Grilled Chicken With Rice",
+    "Grilled Fish With Rice",
+    "Chicken Biryani",
+    "Beef Biryani",
+    "Shrimp Biryani",
+    "Grill Shrimp With Rice",
+    "Mutton Madhooth",
+    "Chicken Madhooth",
     "Chicken Kabsa",
-    "Mandi",
-    "Biryani",
-    "Mixed Rice Platter",
-    "Lamb Kabsa",
-    "Seafood Rice",
-    "Lamb Ouzi",
-    "Machboos",
-    "Haneeth",
-    "Saffron Rice Platter",
+    "Mandi Chicken With Rice",
   ],
 };
 
@@ -178,13 +172,13 @@ function MenuCard({
         }}
       >
         {/* ── Food image area ── */}
-        <div className="relative w-full overflow-hidden" style={{ height: "220px" }}>
+        <div className="relative w-full overflow-hidden" style={{ height: "260px" }}>
           {image ? (
             <img
               src={image}
               alt={item.name}
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-              style={{ filter: hovered ? "brightness(0.95)" : "brightness(0.78)" }}
+              style={{ objectPosition: "center 35%" }}
             />
           ) : (
             <div
@@ -199,7 +193,31 @@ function MenuCard({
           )}
 
           {/* Gradient fade at bottom of image */}
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+          <div className="absolute inset-x-0 bottom-[-8px] h-12 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+
+          {/* Action icons */}
+          <div className="absolute top-6 right-4 flex flex-col gap-2 z-30">
+            <div 
+              className="w-12 h-12 rounded-full bg-black flex flex-col items-center justify-center transition-all duration-300 hover:scale-105"
+              style={{ border: "2px solid #EAB308" }}
+            >
+              <span className="text-[11px] font-black text-[#EAB308] leading-none">
+                {(item.calories || "547 kcal").replace(" calories", "").replace(" kcal", "")}
+              </span>
+              <span className="text-[8px] uppercase font-bold text-neutral-400 leading-none mt-0.5">
+                calories
+              </span>
+            </div>
+            <div 
+              className="w-12 h-12 rounded-full bg-black flex flex-col items-center justify-center transition-all duration-300 hover:scale-105"
+              style={{ border: "2px solid #EAB308" }}
+            >
+              <Footprints size={14} className="text-[#EAB308]" />
+              <span className="text-[8px] font-bold text-white leading-none mt-1.5 whitespace-nowrap">
+                {(item.walkTime || "110 minutes").replace(" minutes", " min").replace(" minute", " min")}
+              </span>
+            </div>
+          </div>
 
 
           {/* Shimmer line on hover */}
@@ -216,25 +234,33 @@ function MenuCard({
 
         {/* ── Text content ── */}
         <div className="px-5 pt-4 pb-5 flex flex-col gap-2">
-          <h3
-            className="text-[15px] font-bold leading-tight tracking-tight"
-            style={{ color: hovered ? "#fff" : "#e5e5e5" }}
-          >
-            {item.name}
-          </h3>
-          <p className="text-[11px] leading-relaxed line-clamp-2" style={{ color: "#666" }}>
-            {item.desc}
-          </p>
-
-          {/* Status row */}
-          <div className="flex items-center gap-1.5 mt-3">
-            <div
-              className="w-1.5 h-1.5 rounded-full"
-              style={{ background: accent }}
-            />
-            <span className="text-[10px] uppercase tracking-widest font-semibold" style={{ color: accent }}>
-              Available
-            </span>
+          <div className="flex justify-between items-start gap-2">
+            <div className="flex flex-col">
+              <h3
+                className="text-[15px] font-bold leading-tight tracking-tight"
+                style={{ color: hovered ? "#fff" : "#e5e5e5" }}
+              >
+                {item.name}
+              </h3>
+              {item.subName && (
+                <span 
+                  className="text-[15px] font-bold mt-1"
+                  style={{ color: hovered ? "#fff" : "#e5e5e5" }}
+                >
+                  {item.subName}
+                </span>
+              )}
+            </div>
+            {item.price && (
+              <div className="flex flex-col items-end gap-3 mt-1" style={{ transform: "translateY(6px)" }}>
+                <span className="text-[13px] font-bold px-3 py-1 rounded-md bg-[#EAB308] text-black whitespace-nowrap">
+                  {item.price}
+                </span>
+                <span className="text-[13px] font-bold px-3 py-1 rounded-md bg-[#EAB308] text-black whitespace-nowrap">
+                  {item.price2 || item.price}
+                </span>
+              </div>
+            )}
           </div>
         </div>
 

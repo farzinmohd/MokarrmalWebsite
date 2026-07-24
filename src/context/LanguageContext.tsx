@@ -26,7 +26,18 @@ type Translations = {
       beverages: string;
       sides: string;
     };
-    items: Record<string, { name: string; desc: string; price: string }>;
+    items: Record<
+      string,
+      { 
+        name: string; 
+        desc: string; 
+        price: string; 
+        subName?: string; 
+        price2?: string; 
+        calories?: string; 
+        walkTime?: string; 
+      }
+    >;
     footer: {
       tagline: string;
       location: string;
@@ -90,24 +101,207 @@ const translations: Translations = {
       sides: "Sides",
     },
     items: {
-      "Classic Burger": { name: "Classic Burger", desc: "Angus beef, cheddar, lettuce, tomato, special sauce", price: "35 SAR" },
-      "Double Cheese Burger": { name: "Double Cheese Burger", desc: "Double Angus beef, double cheddar, caramelized onions", price: "55 SAR" },
-      "Chicken Burger": { name: "Chicken Burger", desc: "Crispy chicken breast, slaw, spicy mayo", price: "38 SAR" },
-      "Spicy Burger": { name: "Spicy Burger", desc: "Angus beef, jalapenos, pepper jack, spicy sauce", price: "42 SAR" },
-      "Mokarrmal Special Burger": { name: "Mokarmal Special Burger", desc: "Wagyu beef, truffle mayo, aged cheddar, brioche", price: "65 SAR" },
+      "Chicken Beef Burger": { 
+        name: "Chicken Beef Burger", 
+        subName: "برجر دجاج / لحم", 
+        desc: "A delicious combination of chicken and beef flavors", 
+        price: "18.50 SAR", 
+        calories: "450 kcal", 
+        walkTime: "90 minutes" 
+      },
+      "Chicken Beef Double Burger": { 
+        name: "Chicken Beef Double Burger", 
+        subName: "برجر دجاج / لحم دبل", 
+        desc: "Double the patties, double the flavor", 
+        price: "28.50 SAR", 
+        calories: "820 kcal", 
+        walkTime: "164 minutes" 
+      },
+      "Zinger Double Burger": { 
+        name: "Zinger Double Burger", 
+        subName: "زنجر دبل برجر", 
+        desc: "Spicy double chicken zinger for a fiery kick", 
+        price: "30.50 SAR", 
+        calories: "750 kcal", 
+        walkTime: "150 minutes" 
+      },
+      "Fish Burger": { 
+        name: "Fish Burger", 
+        subName: "برجر سمك", 
+        desc: "Crispy fish fillet with fresh tartar sauce", 
+        price: "22.50 SAR", 
+        calories: "420 kcal", 
+        walkTime: "84 minutes" 
+      },
+      "Shrimp Burger": { 
+        name: "Shrimp Burger", 
+        subName: "برجر جمبري", 
+        desc: "Succulent shrimp patty with our signature sauce", 
+        price: "23.50 SAR", 
+        calories: "360 kcal", 
+        walkTime: "72 minutes" 
+      },
       "Chicken Shawarma": { name: "Chicken Shawarma", desc: "Spiced chicken, garlic sauce, fresh pickles", price: "25 SAR" },
       "Beef Shawarma": { name: "Beef Shawarma", desc: "Premium beef, tahini, parsley, onions", price: "28 SAR" },
       "Mixed Shawarma": { name: "Mixed Shawarma", desc: "Chicken and beef, mixed sauces, fries", price: "32 SAR" },
       "Family Shawarma Platter": { name: "Family Shawarma Platter", desc: "Large assorted shawarma cuts, sides, dips", price: "120 SAR" },
-      "Margherita Pizza": { name: "Margherita Pizza", desc: "San Marzano tomatoes, fresh mozzarella, basil", price: "45 SAR" },
-      "Chicken Pizza": { name: "Chicken Pizza", desc: "Grilled chicken, mushrooms, garlic white sauce", price: "55 SAR" },
-      "Pepperoni Pizza": { name: "Pepperoni Pizza", desc: "Premium beef pepperoni, mozzarella, oregano", price: "50 SAR" },
-      "BBQ Pizza": { name: "BBQ Pizza", desc: "Smoked chicken, BBQ sauce, red onions", price: "55 SAR" },
-      "Mokarrmal Signature Pizza": { name: "Mokarmal Signature Pizza", desc: "Truffle paste, wild mushrooms, 24k gold leaf", price: "95 SAR" },
-      "Chicken Kabsa": { name: "Chicken Kabsa", desc: "Traditional spiced rice, roasted half chicken", price: "40 SAR" },
-      "Mandi": { name: "Mandi", desc: "Smoked basmati rice, tender lamb, mandi spices", price: "60 SAR" },
-      "Biryani": { name: "Biryani", desc: "Fragrant saffron rice, marinated chicken", price: "45 SAR" },
-      "Mixed Rice Platter": { name: "Mixed Rice Platter", desc: "Assorted premium rice varieties with mixed meats", price: "150 SAR" },
+      "Vegetable Pizza": { 
+        name: "Vegetable Pizza", 
+        subName: "بيتزا خضار", 
+        desc: "Fresh garden vegetables, mozzarella, tomato sauce", 
+        price: "35.50 SAR", 
+        price2: "45.50 SAR",
+        calories: "547 kcal",
+        walkTime: "110 minutes"
+      },
+      "Pineapple Pizza": { 
+        name: "Pineapple Pizza", 
+        subName: "بيتزا أناناس", 
+        desc: "Sweet pineapple, savory toppings, mozzarella, tomato sauce", 
+        price: "35.50 SAR", 
+        price2: "45.50 SAR",
+        calories: "350 kcal",
+        walkTime: "70 minutes"
+      },
+      "Nutella Pizza": { 
+        name: "Nutella Pizza", 
+        subName: "نوتيلا", 
+        desc: "Rich Nutella spread, melted over a fresh pizza crust", 
+        price: "35.50 SAR", 
+        price2: "45.50 SAR",
+        calories: "720 kcal",
+        walkTime: "145 minutes"
+      },
+      "Super Pepperoni": { 
+        name: "Super Pepperoni", 
+        subName: "سوبر بيبروني", 
+        desc: "Extra pepperoni, mozzarella, and our signature tomato sauce", 
+        price: "35.50 SAR", 
+        price2: "45.50 SAR",
+        calories: "630 kcal",
+        walkTime: "126 minutes"
+      },
+      "Chicken BBQ": { 
+        name: "Chicken BBQ", 
+        subName: "باربكيو دجاج", 
+        desc: "Grilled chicken with sweet BBQ sauce and red onions", 
+        price: "35.50 SAR", 
+        price2: "45.50 SAR",
+        calories: "756 kcal",
+        walkTime: "151 minutes"
+      },
+      "Cheese Pizza": { 
+        name: "Cheese Pizza", 
+        subName: "بيتزا جبنة", 
+        desc: "Classic cheese pizza with our special blend of mozzarella", 
+        price: "35.50 SAR", 
+        price2: "45.50 SAR",
+        calories: "610 kcal",
+        walkTime: "122 minutes"
+      },
+      "Minced Beef Pizza": { 
+        name: "Minced Beef Pizza", 
+        subName: "بيتزا لحم مفروم", 
+        desc: "Spiced minced beef, mozzarella, and fresh herbs", 
+        price: "35.50 SAR", 
+        price2: "45.50 SAR",
+        calories: "684 kcal",
+        walkTime: "137 minutes"
+      },
+      "Chicken Roanch Pizza": { 
+        name: "Chicken Roanch Pizza", 
+        subName: "بيتزا دجاج رانش", 
+        desc: "Grilled chicken topped with creamy ranch sauce", 
+        price: "35.50 SAR", 
+        price2: "45.50 SAR",
+        calories: "735 kcal",
+        walkTime: "147 minutes"
+      },
+      "Grilled Chicken With Rice": { 
+        name: "Grilled Chicken With Rice", 
+        subName: "دجاج الفحم مع أرز", 
+        desc: "Authentic grilled chicken served with aromatic rice", 
+        price: "30.50 SAR", 
+        calories: "620 kcal", 
+        walkTime: "124 minutes" 
+      },
+      "Grilled Fish With Rice": { 
+        name: "Grilled Fish With Rice", 
+        subName: "سمك الفحم مع أرز", 
+        desc: "Freshly grilled fish served over premium rice", 
+        price: "45.50 SAR", 
+        calories: "470 kcal", 
+        walkTime: "94 minutes" 
+      },
+      "Chicken Biryani": { 
+        name: "Chicken Biryani", 
+        subName: "برياني دجاج", 
+        desc: "Classic chicken biryani cooked with traditional spices", 
+        price: "20.50 SAR", 
+        price2: "30.50 SAR", 
+        calories: "580 kcal", 
+        walkTime: "116 minutes" 
+      },
+      "Beef Biryani": { 
+        name: "Beef Biryani", 
+        subName: "برياني لحم", 
+        desc: "Tender beef pieces layered with fragrant basmati rice", 
+        price: "30.50 SAR", 
+        price2: "40.50 SAR", 
+        calories: "630 kcal", 
+        walkTime: "126 minutes" 
+      },
+      "Shrimp Biryani": { 
+        name: "Shrimp Biryani", 
+        subName: "برياني جمبري", 
+        desc: "Flavorful shrimp biryani with rich coastal spices", 
+        price: "45.50 SAR", 
+        calories: "530 kcal", 
+        walkTime: "106 minutes" 
+      },
+      "Grill Shrimp With Rice": { 
+        name: "Grill Shrimp With Rice", 
+        subName: "جمبري مع أرز", 
+        desc: "Perfectly grilled shrimp served alongside spiced rice", 
+        price: "45.50 SAR", 
+        calories: "530 kcal", 
+        walkTime: "106 minutes" 
+      },
+      "Mutton Madhooth": { 
+        name: "Mutton Madhooth", 
+        subName: "لحم مضغوط", 
+        desc: "Pressure-cooked mutton rice bursting with rich flavors", 
+        price: "55.50 SAR", 
+        calories: "716 kcal", 
+        walkTime: "143 minutes" 
+      },
+      "Chicken Madhooth": { 
+        name: "Chicken Madhooth", 
+        subName: "دجاج مضغوط", 
+        desc: "Pressure-cooked chicken and rice with authentic spices", 
+        price: "30.50 SAR", 
+        price2: "35.50 SAR", 
+        calories: "620 kcal", 
+        walkTime: "124 minutes" 
+      },
+      "Chicken Kabsa": { 
+        name: "Chicken Kabsa", 
+        subName: "كبسة دجاج", 
+        desc: "Traditional spiced kabsa rice topped with roasted chicken", 
+        price: "20.50 SAR", 
+        price2: "30.50 SAR", 
+        calories: "540 kcal", 
+        walkTime: "108 minutes" 
+      },
+      "Mandi Chicken With Rice": { 
+        name: "Mandi Chicken With Rice", 
+        subName: "مندي دجاج مع أرز", 
+        desc: "Slow-roasted mandi chicken on a bed of smoked rice", 
+        price: "30.50 SAR", 
+        price2: "35.50 SAR", 
+        calories: "530 kcal", 
+        walkTime: "106 minutes" 
+      },
       // ── New Burgers ──
       "Mushroom Burger":          { name: "Mushroom Burger", desc: "Sauteed portobello mushrooms, Swiss cheese, garlic aioli, brioche bun", price: "45 SAR" },
       "Fish Fillet Burger":       { name: "Fish Fillet Burger", desc: "Crispy golden sea bass fillet, tartar sauce, shredded lettuce", price: "42 SAR" },
@@ -216,9 +410,9 @@ const translations: Translations = {
     chefsSection: {
       title: "Chef's Recommendations",
       dishes: [
-        { name: "Wagyu Gold Burger", desc: "A masterpiece of flavor. 100% Wagyu beef patty, vintage cheddar, and our secret gold sauce.", discover: "Discover" },
-        { name: "Alfahm Mandi", desc: "Slow-roasted premium cuts, served with artisan bread and authentic garlic emulsion.", discover: "Discover" },
-        { name: "Truffle Pizza", desc: "Hand-tossed sourdough, rich truffle cream, wild mushrooms, and buffalo mozzarella.", discover: "Discover" }
+        { name: "Zinger Double Burger", desc: "Spicy double chicken zinger for a fiery kick", discover: "Discover" },
+        { name: "Mutton Madhooth", desc: "Pressure-cooked mutton rice bursting with rich flavors", discover: "Discover" },
+        { name: "Chicken BBQ", desc: "Grilled chicken with sweet BBQ sauce and red onions", discover: "Discover" }
       ]
     }
   },
@@ -244,24 +438,207 @@ const translations: Translations = {
       sides: "أطباق جانبية",
     },
     items: {
-      "Classic Burger": { name: "كلاسيك برجر", desc: "لحم أنجوس، شيدر، خس، طماطم، صوص خاص", price: "35 ريال" },
-      "Double Cheese Burger": { name: "دبل تشيز برجر", desc: "لحم أنجوس مزدوج، شيدر مزدوج، بصل مكرمل", price: "55 ريال" },
-      "Chicken Burger": { name: "برجر دجاج", desc: "صدر دجاج مقرمش، سلطة ملفوف، مايونيز حار", price: "38 ريال" },
-      "Spicy Burger": { name: "برجر حار", desc: "لحم أنجوس، هلابينو، جبنة بيبر جاك، صوص حار", price: "42 ريال" },
-      "Mokarrmal Special Burger": { name: "برجر مكرمّل الخاص", desc: "لحم واغيو، مايونيز الكمأة، شيدر معتق، بريوش", price: "65 ريال" },
+      "Chicken Beef Burger": { 
+        name: "برجر دجاج / لحم", 
+        subName: "Chicken Beef Burger", 
+        desc: "مزيج لذيذ من نكهات الدجاج واللحم", 
+        price: "18.50 ريال", 
+        calories: "450 kcal", 
+        walkTime: "90 minutes" 
+      },
+      "Chicken Beef Double Burger": { 
+        name: "برجر دجاج / لحم دبل", 
+        subName: "Chicken Beef Double Burger", 
+        desc: "شريحتان مضاعفتان، نكهة مضاعفة", 
+        price: "28.50 ريال", 
+        calories: "820 kcal", 
+        walkTime: "164 minutes" 
+      },
+      "Zinger Double Burger": { 
+        name: "زنجر دبل برجر", 
+        subName: "Zinger Double Burger", 
+        desc: "زنجر دجاج مزدوج حار لنكهة نارية", 
+        price: "30.50 ريال", 
+        calories: "750 kcal", 
+        walkTime: "150 minutes" 
+      },
+      "Fish Burger": { 
+        name: "برجر سمك", 
+        subName: "Fish Burger", 
+        desc: "فيليه سمك مقرمش مع صلصة التارتار الطازجة", 
+        price: "22.50 ريال", 
+        calories: "420 kcal", 
+        walkTime: "84 minutes" 
+      },
+      "Shrimp Burger": { 
+        name: "برجر جمبري", 
+        subName: "Shrimp Burger", 
+        desc: "شريحة جمبري عصارية مع صلصتنا المميزة", 
+        price: "23.50 ريال", 
+        calories: "360 kcal", 
+        walkTime: "72 minutes" 
+      },
       "Chicken Shawarma": { name: "شاورما دجاج", desc: "دجاج متبل، صوص ثوم، مخلل طازج", price: "25 ريال" },
       "Beef Shawarma": { name: "شاورما لحم", desc: "لحم فاخر، طحينة، بقدونس، بصل", price: "28 ريال" },
       "Mixed Shawarma": { name: "شاورما مشكلة", desc: "دجاج ولحم، صوصات مشكلة، بطاطس", price: "32 ريال" },
       "Family Shawarma Platter": { name: "طبق شاورما عائلي", desc: "تشكيلة شاورما كبيرة، أطباق جانبية، صوصات", price: "120 ريال" },
-      "Margherita Pizza": { name: "بيتزا مارغريتا", desc: "طماطم سان مارزانو، موزاريلا طازجة، ريحان", price: "45 ريال" },
-      "Chicken Pizza": { name: "بيتزا دجاج", desc: "دجاج مشوي، فطر، صوص ثوم أبيض", price: "55 ريال" },
-      "Pepperoni Pizza": { name: "بيتزا بيبروني", desc: "بيبروني لحم فاخر، موزاريلا، أوريغانو", price: "50 ريال" },
-      "BBQ Pizza": { name: "بيتزا باربكيو", desc: "دجاج مدخن، صوص باربكيو، بصل أحمر", price: "55 ريال" },
-      "Mokarrmal Signature Pizza": { name: "بيتزا مكرمّل المميزة", desc: "معجون الكمأة، فطر بري، ورق ذهب عيار 24", price: "95 ريال" },
-      "Chicken Kabsa": { name: "كبسة دجاج", desc: "أرز تقليدي مبهر، نصف دجاجة محمرة", price: "40 ريال" },
-      "Mandi": { name: "مندي", desc: "أرز بسمتي مدخن، لحم غنم طري، بهارات المندي", price: "60 ريال" },
-      "Biryani": { name: "برياني", desc: "أرز زعفران معطر، دجاج متبل", price: "45 ريال" },
-      "Mixed Rice Platter": { name: "طبق أرز مشكل", desc: "تشكيلة أرز فاخرة مع لحوم مشكلة", price: "150 ريال" },
+      "Vegetable Pizza": { 
+        name: "بيتزا خضار", 
+        subName: "Vegetable Pizza", 
+        desc: "خضار مشكلة طازجة، موزاريلا، صلصة طماطم", 
+        price: "35.50 ريال", 
+        price2: "45.50 ريال",
+        calories: "547 kcal",
+        walkTime: "110 minutes"
+      },
+      "Pineapple Pizza": { 
+        name: "بيتزا أناناس", 
+        subName: "Pineapple Pizza", 
+        desc: "أناناس حلو، إضافات مالحة، موزاريلا، صلصة طماطم", 
+        price: "35.50 ريال", 
+        price2: "45.50 ريال",
+        calories: "350 kcal",
+        walkTime: "70 minutes"
+      },
+      "Nutella Pizza": { 
+        name: "نوتيلا", 
+        subName: "Nutella Pizza", 
+        desc: "شوكولاتة نوتيلا الغنية، مذابة على عجينة بيتزا طازجة", 
+        price: "35.50 ريال", 
+        price2: "45.50 ريال",
+        calories: "720 kcal",
+        walkTime: "145 minutes"
+      },
+      "Super Pepperoni": { 
+        name: "سوبر بيبروني", 
+        subName: "Super Pepperoni", 
+        desc: "بيبروني إضافي، موزاريلا، وصلصة الطماطم المميزة", 
+        price: "35.50 ريال", 
+        price2: "45.50 ريال",
+        calories: "630 kcal",
+        walkTime: "126 minutes"
+      },
+      "Chicken BBQ": { 
+        name: "باربكيو دجاج", 
+        subName: "Chicken BBQ", 
+        desc: "دجاج مشوي مع صلصة باربكيو حلوة وبصل أحمر", 
+        price: "35.50 ريال", 
+        price2: "45.50 ريال",
+        calories: "756 kcal",
+        walkTime: "151 minutes"
+      },
+      "Cheese Pizza": { 
+        name: "بيتزا جبنة", 
+        subName: "Cheese Pizza", 
+        desc: "بيتزا الجبنة الكلاسيكية مع مزيجنا الخاص من الموزاريلا", 
+        price: "35.50 ريال", 
+        price2: "45.50 ريال",
+        calories: "610 kcal",
+        walkTime: "122 minutes"
+      },
+      "Minced Beef Pizza": { 
+        name: "بيتزا لحم مفروم", 
+        subName: "Minced Beef Pizza", 
+        desc: "لحم مفروم متبل، موزاريلا، وأعشاب طازجة", 
+        price: "35.50 ريال", 
+        price2: "45.50 ريال",
+        calories: "684 kcal",
+        walkTime: "137 minutes"
+      },
+      "Chicken Roanch Pizza": { 
+        name: "بيتزا دجاج رانش", 
+        subName: "Chicken Roanch Pizza", 
+        desc: "دجاج مشوي مغطى بصلصة الرانش الكريمية", 
+        price: "35.50 ريال", 
+        price2: "45.50 ريال",
+        calories: "735 kcal",
+        walkTime: "147 minutes"
+      },
+      "Grilled Chicken With Rice": { 
+        name: "دجاج الفحم مع أرز", 
+        subName: "Grilled Chicken With Rice", 
+        desc: "دجاج مشوي أصيل يقدم مع أرز عطري", 
+        price: "30.50 ريال", 
+        calories: "620 kcal", 
+        walkTime: "124 minutes" 
+      },
+      "Grilled Fish With Rice": { 
+        name: "سمك الفحم مع أرز", 
+        subName: "Grilled Fish With Rice", 
+        desc: "سمك مشوي طازج يقدم فوق أرز فاخر", 
+        price: "45.50 ريال", 
+        calories: "470 kcal", 
+        walkTime: "94 minutes" 
+      },
+      "Chicken Biryani": { 
+        name: "برياني دجاج", 
+        subName: "Chicken Biryani", 
+        desc: "برياني الدجاج الكلاسيكي المطبوخ بالتوابل التقليدية", 
+        price: "20.50 ريال", 
+        price2: "30.50 ريال", 
+        calories: "580 kcal", 
+        walkTime: "116 minutes" 
+      },
+      "Beef Biryani": { 
+        name: "برياني لحم", 
+        subName: "Beef Biryani", 
+        desc: "قطع لحم طرية مع أرز البسمتي العطري", 
+        price: "30.50 ريال", 
+        price2: "40.50 ريال", 
+        calories: "630 kcal", 
+        walkTime: "126 minutes" 
+      },
+      "Shrimp Biryani": { 
+        name: "برياني جمبري", 
+        subName: "Shrimp Biryani", 
+        desc: "برياني جمبري لذيذ مع توابل غنية", 
+        price: "45.50 ريال", 
+        calories: "530 kcal", 
+        walkTime: "106 minutes" 
+      },
+      "Grill Shrimp With Rice": { 
+        name: "جمبري مع أرز", 
+        subName: "Grill Shrimp With Rice", 
+        desc: "جمبري مشوي بعناية يقدم مع الأرز المتبل", 
+        price: "45.50 ريال", 
+        calories: "530 kcal", 
+        walkTime: "106 minutes" 
+      },
+      "Mutton Madhooth": { 
+        name: "لحم مضغوط", 
+        subName: "Mutton Madhooth", 
+        desc: "مضغوط اللحم المطبوخ ببطء بنكهات غنية", 
+        price: "55.50 ريال", 
+        calories: "716 kcal", 
+        walkTime: "143 minutes" 
+      },
+      "Chicken Madhooth": { 
+        name: "دجاج مضغوط", 
+        subName: "Chicken Madhooth", 
+        desc: "مضغوط الدجاج والأرز بالتوابل الأصيلة", 
+        price: "30.50 ريال", 
+        price2: "35.50 ريال", 
+        calories: "620 kcal", 
+        walkTime: "124 minutes" 
+      },
+      "Chicken Kabsa": { 
+        name: "كبسة دجاج", 
+        subName: "Chicken Kabsa", 
+        desc: "أرز الكبسة التقليدي المبهر مع الدجاج المحمر", 
+        price: "20.50 ريال", 
+        price2: "30.50 ريال", 
+        calories: "540 kcal", 
+        walkTime: "108 minutes" 
+      },
+      "Mandi Chicken With Rice": { 
+        name: "مندي دجاج مع أرز", 
+        subName: "Mandi Chicken With Rice", 
+        desc: "دجاج مندي محمر ببطء على طبقة من الأرز المدخن", 
+        price: "30.50 ريال", 
+        price2: "35.50 ريال", 
+        calories: "530 kcal", 
+        walkTime: "106 minutes" 
+      },
       // ── New Burgers ──
       "Mushroom Burger":          { name: "برجر الفطر", desc: "فطر بورتوبيلو مشوي، جبنة سويسر، مايونيز ثوم، بريوش", price: "45 ريال" },
       "Fish Fillet Burger":       { name: "برجر فيليه سمك", desc: "فيليه سمك ذهبي مقرمش، صوص تارتار، خس مبشور", price: "42 ريال" },
@@ -370,13 +747,25 @@ const translations: Translations = {
     chefsSection: {
       title: "توصيات الشيف",
       dishes: [
-        { name: "برجر واغيو الذهبي", desc: "تحفة فنية من النكهات. شريحة لحم واغيو 100٪، شيدر معتق، وصوصنا الذهبي السري.", discover: "اكتشف" },
-        { name: "الفحم مندي", desc: "قطع فاخرة مشوية ببطء، تُقدّم مع خبز الحرفيين وإيمولسيون الثوم الأصيل.", discover: "اكتشف" },
-        { name: "بيتزا الكمأة", desc: "عجينة محضرة يدوياً، كريمة الكمأة الغنية، فطر بري، وموزاريلا جاموس.", discover: "اكتشف" }
+        { name: "زنجر دبل برجر", desc: "زنجر دجاج مزدوج حار لنكهة نارية", discover: "اكتشف" },
+        { name: "لحم مضغوط", desc: "مضغوط اللحم المطبوخ ببطء بنكهات غنية", discover: "اكتشف" },
+        { name: "باربكيو دجاج", desc: "دجاج مشوي مع صلصة الباربيكيو الحلوة والبصل الأحمر", discover: "اكتشف" }
       ]
     }
   },
 };
+
+// Dynamically populate subName for all items (excluding cases where it is manually defined)
+Object.keys(translations.en.items).forEach((key) => {
+  if (translations.en.items[key] && translations.ar.items[key]) {
+    if (!translations.en.items[key].subName) {
+      translations.en.items[key].subName = translations.ar.items[key].name;
+    }
+    if (!translations.ar.items[key].subName) {
+      translations.ar.items[key].subName = translations.en.items[key].name;
+    }
+  }
+});
 
 type LanguageContextType = {
   language: Language;
